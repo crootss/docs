@@ -3,7 +3,7 @@
 <div align="center">
   <img src="crootss.png" alt="CrootSS Logo" width="200"/>
   
-  [![GitHub stars](https://img.shields.io/github/stars/crootss/crootss.svg?style=social&label=Star&maxAge=2592000)](https://github.com/crootss/crootss/stargazers/)
+  [![GitHub stars](https://img.shields.io/github/stars/crootss.svg?style=social&label=Star&maxAge=2592000)](https://github.com/crootss)
   [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 </div>
 
