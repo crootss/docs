@@ -146,6 +146,50 @@
   </tbody>
 </table>
 
+<h2 id="contoh-system-context">Contoh: system context</h2>
+<p>Sistem yang dibahas di tengah, orang (kepala + badan) dan sistem luar (garis putus) di sekelilingnya, dihubungkan panah berlabel. Mata panah dibuat sekali di <code>&lt;marker&gt;</code> berisi <code>.dg-head</code>, lalu dipakai lewat <code>marker-end</code>. Beri <code>id</code> marker yang unik per halaman.</p>
+<pre><code class="language-html">&lt;svg class=&quot;dg&quot; viewBox=&quot;0 0 560 460&quot; role=&quot;img&quot; aria-label=&quot;System context aplikasi&quot;&gt;
+  &lt;defs&gt;
+    &lt;marker id=&quot;panah&quot; viewBox=&quot;0 0 10 10&quot; refX=&quot;8&quot; refY=&quot;5&quot; markerWidth=&quot;5&quot; markerHeight=&quot;5&quot;
+            orient=&quot;auto-start-reverse&quot;&gt;&lt;path class=&quot;dg-head&quot; d=&quot;M0 0 L10 5 L0 10 z&quot;/&gt;&lt;/marker&gt;
+  &lt;/defs&gt;
+  &lt;!-- Panah: orang/sistem luar -&gt; sistem --&gt;
+  &lt;path class=&quot;dg-edge a-draw&quot; pathLength=&quot;1&quot; marker-end=&quot;url(#panah)&quot; d=&quot;M100 240 L190 240&quot;/&gt;
+  &lt;!-- Sistem di tengah --&gt;
+  &lt;rect class=&quot;dg-box&quot; x=&quot;195&quot; y=&quot;190&quot; width=&quot;170&quot; height=&quot;90&quot; rx=&quot;14&quot;/&gt;
+  &lt;text x=&quot;280&quot; y=&quot;230&quot; text-anchor=&quot;middle&quot; font-weight=&quot;700&quot;&gt;Sistemmu&lt;/text&gt;
+  &lt;!-- Orang: kepala + badan --&gt;
+  &lt;circle class=&quot;dg-box&quot; cx=&quot;55&quot; cy=&quot;200&quot; r=&quot;20&quot;/&gt;
+  &lt;rect class=&quot;dg-box&quot; x=&quot;23&quot; y=&quot;225&quot; width=&quot;64&quot; height=&quot;40&quot; rx=&quot;20&quot;/&gt;
+  &lt;text x=&quot;55&quot; y=&quot;295&quot; text-anchor=&quot;middle&quot;&gt;Pengguna&lt;/text&gt;
+  &lt;!-- Sistem luar: garis putus --&gt;
+  &lt;rect class=&quot;dg-box&quot; x=&quot;195&quot; y=&quot;20&quot; width=&quot;170&quot; height=&quot;60&quot; rx=&quot;12&quot; stroke-dasharray=&quot;10 8&quot;/&gt;
+  &lt;!-- Label hubungan --&gt;
+  &lt;g class=&quot;dg-label&quot; transform=&quot;translate(145 208)&quot;&gt;&lt;rect x=&quot;-48&quot; y=&quot;-16&quot; width=&quot;96&quot; height=&quot;32&quot; rx=&quot;16&quot;/&gt;&lt;text&gt;memakai&lt;/text&gt;&lt;/g&gt;
+&lt;/svg&gt;</code></pre>
+<p>Dalam presentasi, diagram ini cocok menjadi big picture: setiap aktor dan sistem luar menjadi blok yang di-zoom satu per satu.</p>
+
+<h2 id="contoh-rich-picture">Contoh: rich picture</h2>
+<p>Rich picture menggambar <em>situasi</em>: siapa yang terlibat, apa kekhawatiran dan pertanyaan mereka, dan di mana konfliknya. Bentuknya bebas, tetapi kelasnya tetap sama (<code>dg-box</code>, <code>dg-edge</code>, <code>dg-label</code>), sehingga warnanya ikut tema. Simbol yang lazim: awan untuk kekhawatiran, balon untuk ucapan, pedang bersilang untuk konflik.</p>
+<pre><code class="language-html">&lt;svg class=&quot;dg&quot; viewBox=&quot;0 0 560 460&quot; role=&quot;img&quot; aria-label=&quot;Rich picture situasi kelas&quot;&gt;
+  &lt;!-- Orang (stick figure) dengan awan kekhawatiran yang melayang --&gt;
+  &lt;circle class=&quot;dg-box&quot; cx=&quot;80&quot; cy=&quot;302&quot; r=&quot;22&quot;/&gt;
+  &lt;path class=&quot;dg-edge&quot; d=&quot;M80 324 L80 385 M80 345 L48 372 M80 345 L125 315 M80 385 L58 428 M80 385 L102 428&quot;/&gt;
+  &lt;g class=&quot;a-float&quot;&gt;
+    &lt;ellipse class=&quot;dg-box&quot; cx=&quot;92&quot; cy=&quot;222&quot; rx=&quot;80&quot; ry=&quot;34&quot;/&gt;
+    &lt;text x=&quot;92&quot; y=&quot;229&quot; text-anchor=&quot;middle&quot;&gt;Slide lagi?&lt;/text&gt;
+  &lt;/g&gt;
+  &lt;!-- Balon pertanyaan yang berdenyut --&gt;
+  &lt;g class=&quot;a-pulse&quot;&gt;
+    &lt;rect class=&quot;dg-box&quot; x=&quot;390&quot; y=&quot;202&quot; width=&quot;160&quot; height=&quot;50&quot; rx=&quot;25&quot;/&gt;
+    &lt;text x=&quot;470&quot; y=&quot;233&quot; text-anchor=&quot;middle&quot;&gt;Kita di mana?&lt;/text&gt;
+  &lt;/g&gt;
+  &lt;!-- Konflik: pedang bersilang + label --&gt;
+  &lt;path class=&quot;dg-edge&quot; d=&quot;M250 292 L310 352 M310 292 L250 352&quot;/&gt;
+  &lt;g class=&quot;dg-label&quot; transform=&quot;translate(280 392)&quot;&gt;&lt;rect x=&quot;-95&quot; y=&quot;-16&quot; width=&quot;190&quot; height=&quot;32&quot; rx=&quot;16&quot;/&gt;&lt;text&gt;waktu vs tampilan&lt;/text&gt;&lt;/g&gt;
+&lt;/svg&gt;</code></pre>
+<p>Versi lengkap kedua diagram ada di <a href="https://github.com/crootss/themes/tree/main/demo">demo tema</a> (slide System context dan Rich picture).</p>
+
 <h2 id="kelas">Kelas diagram</h2>
 <p>Semua kelas berasal dari <a href="../tema/">tema</a>, murni CSS, dan memakai warna tema.</p>
 <table>
