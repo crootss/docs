@@ -101,11 +101,11 @@
       <h1>API JavaScript</h1>
 <h2 id="auto">Inisialisasi otomatis</h2>
 <p>Memuat <code>croot.min.js</code> sebagai module sudah cukup: setiap <code>[data-croot]</code> di halaman diinisialisasi saat DOM siap. Instance-nya tersimpan di properti <code>root.croot</code>.</p>
-<pre><code class="language-html">&lt;script type=&quot;module&quot; src=&quot;https://cdn.jsdelivr.net/gh/crootss/crootss@v0.3.0/croot.min.js&quot;&gt;&lt;/script&gt;</code></pre>
+<pre><code class="language-html">&lt;script type=&quot;module&quot; src=&quot;https://cdn.jsdelivr.net/gh/crootss/crootss@v0.4.0/croot.min.js&quot;&gt;&lt;/script&gt;</code></pre>
 
 <h2 id="manual">Inisialisasi manual</h2>
 <p>Untuk mengatur opsi atau memakai API, beri root <code>data-croot=&quot;manual&quot;</code> lalu impor <code>croot</code> dari file JS-mu sendiri.</p>
-<pre><code class="language-js">import { croot } from &#x27;https://cdn.jsdelivr.net/gh/crootss/crootss@v0.3.0/croot.min.js&#x27;;
+<pre><code class="language-js">import { croot } from &#x27;https://cdn.jsdelivr.net/gh/crootss/crootss@v0.4.0/croot.min.js&#x27;;
 
 const deck = croot(&#x27;#deck&#x27;, { fit: 0.9, pullback: 1, hash: true, keyboard: true, touch: true, overview: &#x27;#peta&#x27; });
 
@@ -165,7 +165,7 @@ deck.root.addEventListener(&#x27;croot:enter&#x27;, (e) =&gt; {
   &lt;span class=&quot;hud-pos&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
   &lt;button class=&quot;hud-btn&quot; data-act=&quot;next&quot; aria-label=&quot;Berikutnya&quot;&gt;→&lt;/button&gt;
 &lt;/nav&gt;</code></pre>
-<pre><code class="language-js">import { croot } from &#x27;https://cdn.jsdelivr.net/gh/crootss/crootss@v0.3.0/croot.min.js&#x27;;
+<pre><code class="language-js">import { croot } from &#x27;https://cdn.jsdelivr.net/gh/crootss/crootss@v0.4.0/croot.min.js&#x27;;
 
 const deck = croot(&#x27;#deck&#x27;);
 const pos = document.querySelector(&#x27;.hud-pos&#x27;);
