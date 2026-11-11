@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dokumentasi crootss | Presentasi spatial 3D dengan CSS murni</title>
+  <meta name="description" content="Dokumentasi crootss: engine presentasi spatial 3D berbasis CSS 3D transforms. Mulai cepat, markup, navigasi, API JavaScript, kustomisasi CSS, dan tema.">
+  <link rel="canonical" href="https://crootss.if.co.id/docs/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#fbf9f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#161513" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="crootss">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:url" content="https://crootss.if.co.id/docs/">
+  <meta property="og:title" content="Dokumentasi crootss | Presentasi spatial 3D dengan CSS murni">
+  <meta property="og:description" content="Dokumentasi crootss: engine presentasi spatial 3D berbasis CSS 3D transforms. Mulai cepat, markup, navigasi, API JavaScript, kustomisasi CSS, dan tema.">
+  <meta property="og:image" content="https://crootss.if.co.id/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="https://crootss.if.co.id/favicon.ico">
+  <link rel="alternate" type="text/markdown" href="https://crootss.if.co.id/llms.txt" title="crootss untuk LLM">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://crootss.if.co.id/docs/#article",
+      "headline": "Dokumentasi crootss",
+      "description": "Dokumentasi crootss: engine presentasi spatial 3D berbasis CSS 3D transforms. Mulai cepat, markup, navigasi, API JavaScript, kustomisasi CSS, dan tema.",
+      "url": "https://crootss.if.co.id/docs/",
+      "inLanguage": "id",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://crootss.if.co.id/#website"
+      },
+      "about": {
+        "@id": "https://crootss.if.co.id/#software"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "crootss",
+        "url": "https://crootss.if.co.id/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "crootss",
+          "item": "https://crootss.if.co.id/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Dokumentasi",
+          "item": "https://crootss.if.co.id/docs/"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="docs.css">
+  <script type="module" src="docs.js"></script>
+</head>
+<body>
+<a class="skip" href="#isi-halaman">Lompat ke isi</a>
+<header class="top">
+  <a class="brand" href="https://crootss.if.co.id/">crootss</a>
+  <a class="brand-sub" href="./">dokumentasi</a>
+  <nav class="top-links" aria-label="Tautan luar">
+    <a href="https://github.com/crootss/crootss">GitHub</a>
+  </nav>
+</header>
+<div class="layout">
+  <nav class="side" aria-label="Dokumentasi">
+    <ul>
+      <li><a href="./" aria-current="page">Pengantar</a></li>
+      <li><a href="markup/">Markup dan atribut</a></li>
+      <li><a href="navigasi/">Navigasi</a></li>
+      <li><a href="api/">API JavaScript</a></li>
+      <li><a href="css/">Kustomisasi CSS</a></li>
+      <li><a href="tema/">Tema</a></li>
+      <li><a href="lokal/">Menjalankan di komputer</a></li>
+    </ul>
+  </nav>
+  <main id="isi-halaman">
+    <article>
+      <h1>Dokumentasi crootss</h1>
+<p class="lead">crootss adalah engine presentasi spatial 3D berbasis CSS 3D transforms. Slide ditulis sebagai HTML biasa, diletakkan di ruang 3D lewat atribut, lalu kamera terbang di antaranya.</p>
+
+<p>Isinya dua file: <code>crootss.css</code> (layout dan animasi) dan <code>croot.js</code> (kamera dan navigasi, ES module). Tanpa dependency, ±9 KB minified, tanpa build. Karena konten tetap berupa teks di DOM, presentasimu terindeks mesin pencari dan tetap terbaca sebagai dokumen biasa saat JavaScript mati.</p>
+
+<h2 id="mulai-cepat">Mulai cepat</h2>
+<p>Simpan sebagai <code>index.html</code>, jalankan server lokal di foldernya (lihat <a href="lokal/">Menjalankan di komputer</a>), lalu buka di browser.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;Presentasi pertamaku&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/crootss/crootss@v0.3.0/crootss.min.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/crootss/themes@v0.2.0/poster.min.css&quot;&gt;
+  &lt;script type=&quot;module&quot; src=&quot;https://cdn.jsdelivr.net/gh/crootss/crootss@v0.3.0/croot.min.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;main class=&quot;croot-viewport&quot; data-croot&gt;
+    &lt;div class=&quot;croot-stage&quot;&gt;
+      &lt;section class=&quot;croot-node slide t-1 cover&quot; id=&quot;halo&quot; data-croot-step=&quot;1&quot;&gt;
+        &lt;h1&gt;Halo.&lt;/h1&gt;
+        &lt;p class=&quot;lead&quot;&gt;Presentasi pertamaku dengan crootss.&lt;/p&gt;
+      &lt;/section&gt;
+      &lt;section class=&quot;croot-node slide t-3 center&quot; id=&quot;kedua&quot; data-croot-step=&quot;2&quot;
+               data-croot-x=&quot;2000&quot; data-croot-z=&quot;-600&quot; data-croot-ry=&quot;-30&quot;&gt;
+        &lt;h2&gt;Slide kedua, &lt;span class=&quot;hl&quot;&gt;di ruang 3D.&lt;/span&gt;&lt;/h2&gt;
+      &lt;/section&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>Tekan <kbd>→</kbd> atau <kbd>Spasi</kbd> untuk maju, <kbd>Esc</kbd> untuk melihat seluruh ruang. Class <code>slide</code>, <code>t-1</code>, <code>cover</code>, dan seterusnya berasal dari <a href="tema/">tema</a>. Tanpa tema, crootss tetap jalan; kamu yang mengatur gayanya.</p>
+
+<div class="note"><p><strong>Selalu pin versi CDN</strong> (<code>@vX.Y.Z</code>), jangan <code>@latest</code>. Versi terbaru ada di <a href="https://github.com/crootss/crootss/releases">Releases library</a> dan <a href="https://github.com/crootss/themes/releases">Releases tema</a>.</p></div>
+
+<h2 id="cara-kerja">Cara kerja</h2>
+<ol>
+  <li>Setiap <code>.croot-node</code> diberi posisi, rotasi, dan skala di ruang 3D lewat atribut <code>data-croot-*</code>.</li>
+  <li>Saat node aktif berganti, <code>croot.js</code> menghitung matriks dunia node itu lalu memasang <em>inversnya</em> ke <code>.croot-stage</code>. Seluruh dunia bergerak sehingga node aktif tepat menghadap layar. Itulah "kamera".</li>
+  <li>Perpindahan dianimasikan oleh transisi CSS. Untuk lompatan jauh, kamera mundur sejenak lalu maju lagi supaya ruang di sekitarnya terlihat.</li>
+</ol>
+<p>Mode 3D hanya aktif setelah <code>croot.js</code> memberi class <code>croot-ready</code> pada root. Sebelum itu, atau tanpa JavaScript, semua node tampil berurutan sebagai halaman biasa.</p>
+
+<h2 id="isi">Isi dokumentasi</h2>
+<ul class="toc">
+  <li><a href="markup/">Markup dan atribut</a>: struktur, posisi, rotasi, urutan, node bersarang.</li>
+  <li><a href="navigasi/">Navigasi</a>: keyboard, klik, swipe, overview, URL, aksesibilitas.</li>
+  <li><a href="api/">API JavaScript</a>: <code>croot()</code>, opsi, method, event.</li>
+  <li><a href="css/">Kustomisasi CSS</a>: variabel, class status, tips 3D.</li>
+  <li><a href="tema/">Tema</a>: poster, gelap, minimal; class dan token; membuat tema.</li>
+  <li><a href="lokal/">Menjalankan di komputer</a>: Windows, macOS, Linux.</li>
+</ul>
+<p>Contoh nyata: halaman <a href="https://crootss.if.co.id/">crootss.if.co.id</a> sendiri adalah presentasi crootss (<a href="https://github.com/crootss/crootss.github.io/blob/main/index.html">lihat HTML-nya</a>).</p>
+    </article>
+    <nav class="pager" aria-label="Halaman">
+      <a class="next" href="markup/" rel="next"><span>Berikutnya</span>Markup dan atribut</a>
+    </nav>
+    <p class="edit"><a href="https://github.com/crootss/docs/edit/main/index.html">Perbaiki halaman ini di GitHub</a></p>
+  </main>
+</div>
+<footer class="foot">
+  <p>crootss: open source, GPL-3.0. <a href="https://crootss.if.co.id/">Landing</a> · <a href="https://github.com/crootss">GitHub</a> · <a href="https://crootss.if.co.id/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

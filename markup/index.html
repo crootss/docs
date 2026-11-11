@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markup dan atribut | crootss</title>
+  <meta name="description" content="Struktur HTML presentasi crootss dan atribut data-croot-* untuk posisi, rotasi, skala, urutan langkah, node bersarang, dan tautan antar-node.">
+  <link rel="canonical" href="https://crootss.if.co.id/docs/markup/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#fbf9f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#161513" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="crootss">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:url" content="https://crootss.if.co.id/docs/markup/">
+  <meta property="og:title" content="Markup dan atribut | crootss">
+  <meta property="og:description" content="Struktur HTML presentasi crootss dan atribut data-croot-* untuk posisi, rotasi, skala, urutan langkah, node bersarang, dan tautan antar-node.">
+  <meta property="og:image" content="https://crootss.if.co.id/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="https://crootss.if.co.id/favicon.ico">
+  <link rel="alternate" type="text/markdown" href="https://crootss.if.co.id/llms.txt" title="crootss untuk LLM">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://crootss.if.co.id/docs/markup/#article",
+      "headline": "Markup dan atribut",
+      "description": "Struktur HTML presentasi crootss dan atribut data-croot-* untuk posisi, rotasi, skala, urutan langkah, node bersarang, dan tautan antar-node.",
+      "url": "https://crootss.if.co.id/docs/markup/",
+      "inLanguage": "id",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://crootss.if.co.id/#website"
+      },
+      "about": {
+        "@id": "https://crootss.if.co.id/#software"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "crootss",
+        "url": "https://crootss.if.co.id/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "crootss",
+          "item": "https://crootss.if.co.id/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Dokumentasi",
+          "item": "https://crootss.if.co.id/docs/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Markup dan atribut",
+          "item": "https://crootss.if.co.id/docs/markup/"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../docs.css">
+  <script type="module" src="../docs.js"></script>
+</head>
+<body>
+<a class="skip" href="#isi-halaman">Lompat ke isi</a>
+<header class="top">
+  <a class="brand" href="https://crootss.if.co.id/">crootss</a>
+  <a class="brand-sub" href="../">dokumentasi</a>
+  <nav class="top-links" aria-label="Tautan luar">
+    <a href="https://github.com/crootss/crootss">GitHub</a>
+  </nav>
+</header>
+<div class="layout">
+  <nav class="side" aria-label="Dokumentasi">
+    <ul>
+      <li><a href="../">Pengantar</a></li>
+      <li><a href="../markup/" aria-current="page">Markup dan atribut</a></li>
+      <li><a href="../navigasi/">Navigasi</a></li>
+      <li><a href="../api/">API JavaScript</a></li>
+      <li><a href="../css/">Kustomisasi CSS</a></li>
+      <li><a href="../tema/">Tema</a></li>
+      <li><a href="../lokal/">Menjalankan di komputer</a></li>
+    </ul>
+  </nav>
+  <main id="isi-halaman">
+    <article>
+      <h1>Markup dan atribut</h1>
+<h2 id="struktur">Struktur</h2>
+<p>Tiga lapis: root (<code>.croot-viewport</code> dengan atribut <code>data-croot</code>), dunia (<code>.croot-stage</code>), dan node (<code>.croot-node</code>).</p>
+<pre><code class="language-html">&lt;main class=&quot;croot-viewport&quot; data-croot&gt;
+  &lt;div class=&quot;croot-stage&quot;&gt;
+    &lt;section class=&quot;croot-node&quot; id=&quot;halo&quot; data-croot-step=&quot;1&quot;&gt;
+      &lt;h1&gt;Halo&lt;/h1&gt;
+    &lt;/section&gt;
+    &lt;section class=&quot;croot-node&quot; id=&quot;ruang&quot; data-croot-step=&quot;2&quot;
+             data-croot-x=&quot;1400&quot; data-croot-rz=&quot;90&quot;&gt;
+      &lt;h2&gt;Slide berikutnya&lt;/h2&gt;
+    &lt;/section&gt;
+  &lt;/div&gt;
+&lt;/main&gt;</code></pre>
+<p>Beri setiap node <code>id</code>: dipakai sebagai alamat URL (<code>#/halo</code>) dan oleh <code>goto()</code>.</p>
+
+<h2 id="atribut">Atribut node</h2>
+<table>
+  <thead><tr><th>Atribut</th><th>Fungsi</th></tr></thead>
+  <tbody>
+    <tr><td><code>data-croot-step</code></td><td>Urutan navigasi linier (lihat <a href="#urutan">Urutan langkah</a>). Node tanpa step tidak masuk urutan, tetapi tetap bisa diklik.</td></tr>
+    <tr><td><code>data-croot-x</code>, <code>-y</code>, <code>-z</code></td><td>Posisi pusat node dalam px. x ke kanan, y ke bawah, z mendekat ke penonton (negatif = menjauh).</td></tr>
+    <tr><td><code>data-croot-rx</code>, <code>-ry</code>, <code>-rz</code></td><td>Rotasi dalam derajat terhadap sumbu x, y, z. Urutan penerapan: x, lalu y, lalu z.</td></tr>
+    <tr><td><code>data-croot-scale</code></td><td>Skala node (default <code>1</code>). Kamera otomatis menyesuaikan, jadi node <code>3</code> kali besar tetap memenuhi layar saat aktif.</td></tr>
+    <tr><td><code>data-croot-target</code></td><td>Pada elemen apa pun di dalam root: saat diklik, kamera menuju node yang cocok dengan selector ini, misalnya <code>data-croot-target=&quot;#halo&quot;</code>.</td></tr>
+  </tbody>
+</table>
+
+<h2 id="atribut-root">Atribut root</h2>
+<table>
+  <thead><tr><th>Atribut</th><th>Fungsi</th></tr></thead>
+  <tbody>
+    <tr><td><code>data-croot</code></td><td>Menandai root. <code>croot.js</code> menginisialisasinya otomatis.</td></tr>
+    <tr><td><code>data-croot=&quot;manual&quot;</code></td><td>Matikan inisialisasi otomatis; panggil <code>croot()</code> sendiri (lihat <a href="../api/#manual">API</a>).</td></tr>
+    <tr><td><code>data-croot-fit</code></td><td>Porsi layar yang diisi node aktif, default <code>0.9</code>.</td></tr>
+    <tr><td><code>data-croot-pullback</code></td><td>Kekuatan efek kamera mundur di tengah perpindahan, default <code>1</code>; <code>0</code> mematikannya.</td></tr>
+  </tbody>
+</table>
+
+<h2 id="urutan">Urutan langkah</h2>
+<p><code>data-croot-step</code> dibandingkan per segmen titik, bukan sebagai angka desimal: <code>2</code> &lt; <code>2.1</code> &lt; <code>2.2</code> &lt; <code>2.10</code> &lt; <code>3</code>. Jadi sub-langkah bisa ditambah tanpa menomori ulang. Urutan di HTML tidak berpengaruh.</p>
+
+<h2 id="bersarang">Node bersarang</h2>
+<p>Node boleh berisi node lain. Koordinat anak relatif terhadap pusat induknya, jadi memindahkan induk ikut memindahkan anaknya. Ini cocok untuk "zoom ke detail": slide berisi beberapa kartu kecil, lalu kamera masuk ke tiap kartu.</p>
+<pre><code class="language-html">&lt;section class=&quot;croot-node&quot; id=&quot;fitur&quot; data-croot-step=&quot;3&quot; data-croot-x=&quot;3000&quot;&gt;
+  &lt;h2&gt;Tiga fitur&lt;/h2&gt;
+  &lt;div class=&quot;croot-node&quot; id=&quot;cepat&quot; data-croot-step=&quot;3.1&quot;
+       data-croot-x=&quot;-300&quot; data-croot-y=&quot;150&quot; data-croot-scale=&quot;0.25&quot;&gt;…&lt;/div&gt;
+  &lt;div class=&quot;croot-node&quot; id=&quot;ringan&quot; data-croot-step=&quot;3.2&quot;
+       data-croot-x=&quot;300&quot; data-croot-y=&quot;150&quot; data-croot-scale=&quot;0.25&quot;&gt;…&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+<p>Node anak dengan <code>scale</code> kecil tampil sebagai kartu mini di dalam induk; saat aktif, kamera memperbesarnya sampai memenuhi layar. Jika induk dirotasi, beri anak sedikit <code>z</code> (misalnya <code>data-croot-z=&quot;2&quot;</code>) supaya tidak tergambar di belakang permukaan induk.</p>
+
+<h2 id="custom-property">Posisi lewat CSS</h2>
+<p>Setiap atribut posisi punya padanan custom property: <code>--croot-x</code>, <code>--croot-y</code>, <code>--croot-z</code>, <code>--croot-rx</code>, <code>--croot-ry</code>, <code>--croot-rz</code>, <code>--croot-scale</code> (tanpa satuan). Atribut menang bila keduanya ada. Gunakan ini untuk tata letak yang berbeda di ponsel:</p>
+<pre><code class="language-css">#cepat  { --croot-x: -300; --croot-y: 150; --croot-scale: .25; }
+#ringan { --croot-x:  300; --croot-y: 150; --croot-scale: .25; }
+
+@media (max-width: 640px) {
+  #cepat  { --croot-x: 0; --croot-y: -40;  --croot-scale: .36; }
+  #ringan { --croot-x: 0; --croot-y: 240;  --croot-scale: .36; }
+}</code></pre>
+<p>Nilainya dibaca sekali saat inisialisasi dan tidak terwariskan ke node anak.</p>
+
+<h2 id="tanpa-js">Tanpa JavaScript</h2>
+<p>Sebelum <code>croot.js</code> berjalan, atau bila JavaScript mati, root tidak punya class <code>croot-ready</code> dan semua node tampil berurutan sebagai dokumen biasa dengan lebar maksimal <code>--croot-node-width</code>. Tulis konten yang tetap masuk akal dibaca dari atas ke bawah: heading berurutan, teks asli (bukan gambar teks).</p>
+    </article>
+    <nav class="pager" aria-label="Halaman">
+      <a class="prev" href="../" rel="prev"><span>Sebelumnya</span>Pengantar</a>
+<a class="next" href="../navigasi/" rel="next"><span>Berikutnya</span>Navigasi</a>
+    </nav>
+    <p class="edit"><a href="https://github.com/crootss/docs/edit/main/markup/index.html">Perbaiki halaman ini di GitHub</a></p>
+  </main>
+</div>
+<footer class="foot">
+  <p>crootss: open source, GPL-3.0. <a href="https://crootss.if.co.id/">Landing</a> · <a href="https://github.com/crootss">GitHub</a> · <a href="https://crootss.if.co.id/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

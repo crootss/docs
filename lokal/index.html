@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menjalankan di komputer | crootss</title>
+  <meta name="description" content="Cara membuka presentasi crootss di komputer sendiri: server lokal untuk Windows (PowerShell), macOS, dan Linux, serta alasan file:// tidak bisa dipakai.">
+  <link rel="canonical" href="https://crootss.if.co.id/docs/lokal/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#fbf9f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#161513" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="crootss">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:url" content="https://crootss.if.co.id/docs/lokal/">
+  <meta property="og:title" content="Menjalankan di komputer | crootss">
+  <meta property="og:description" content="Cara membuka presentasi crootss di komputer sendiri: server lokal untuk Windows (PowerShell), macOS, dan Linux, serta alasan file:// tidak bisa dipakai.">
+  <meta property="og:image" content="https://crootss.if.co.id/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="https://crootss.if.co.id/favicon.ico">
+  <link rel="alternate" type="text/markdown" href="https://crootss.if.co.id/llms.txt" title="crootss untuk LLM">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://crootss.if.co.id/docs/lokal/#article",
+      "headline": "Menjalankan di komputer",
+      "description": "Cara membuka presentasi crootss di komputer sendiri: server lokal untuk Windows (PowerShell), macOS, dan Linux, serta alasan file:// tidak bisa dipakai.",
+      "url": "https://crootss.if.co.id/docs/lokal/",
+      "inLanguage": "id",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://crootss.if.co.id/#website"
+      },
+      "about": {
+        "@id": "https://crootss.if.co.id/#software"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "crootss",
+        "url": "https://crootss.if.co.id/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "crootss",
+          "item": "https://crootss.if.co.id/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Dokumentasi",
+          "item": "https://crootss.if.co.id/docs/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Menjalankan di komputer",
+          "item": "https://crootss.if.co.id/docs/lokal/"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../docs.css">
+  <script type="module" src="../docs.js"></script>
+</head>
+<body>
+<a class="skip" href="#isi-halaman">Lompat ke isi</a>
+<header class="top">
+  <a class="brand" href="https://crootss.if.co.id/">crootss</a>
+  <a class="brand-sub" href="../">dokumentasi</a>
+  <nav class="top-links" aria-label="Tautan luar">
+    <a href="https://github.com/crootss/crootss">GitHub</a>
+  </nav>
+</header>
+<div class="layout">
+  <nav class="side" aria-label="Dokumentasi">
+    <ul>
+      <li><a href="../">Pengantar</a></li>
+      <li><a href="../markup/">Markup dan atribut</a></li>
+      <li><a href="../navigasi/">Navigasi</a></li>
+      <li><a href="../api/">API JavaScript</a></li>
+      <li><a href="../css/">Kustomisasi CSS</a></li>
+      <li><a href="../tema/">Tema</a></li>
+      <li><a href="../lokal/" aria-current="page">Menjalankan di komputer</a></li>
+    </ul>
+  </nav>
+  <main id="isi-halaman">
+    <article>
+      <h1>Menjalankan di komputer</h1>
+<p class="lead"><code>croot.js</code> adalah ES module, dan browser <strong>tidak</strong> mau memuat module dari <code>file://</code> (klik dua kali <code>index.html</code>). Jalankan server lokal di folder slide, lalu buka <code>http://localhost:8080/</code>.</p>
+
+<h2 id="windows">Windows</h2>
+<p>PowerShell, tanpa instal apa pun. Buka PowerShell di folder slide, tempel seluruh blok ini, lalu tekan Enter.</p>
+<pre><code class="language-powershell">function start-server {
+  # Content-Type wajib: browser menolak ES module tanpa MIME type JavaScript.
+  $types = @{
+    &#x27;.html&#x27;=&#x27;text/html; charset=utf-8&#x27;; &#x27;.css&#x27;=&#x27;text/css; charset=utf-8&#x27;
+    &#x27;.js&#x27;=&#x27;text/javascript; charset=utf-8&#x27;; &#x27;.mjs&#x27;=&#x27;text/javascript; charset=utf-8&#x27;
+    &#x27;.json&#x27;=&#x27;application/json&#x27;; &#x27;.svg&#x27;=&#x27;image/svg+xml&#x27;; &#x27;.ico&#x27;=&#x27;image/x-icon&#x27;
+    &#x27;.png&#x27;=&#x27;image/png&#x27;; &#x27;.jpg&#x27;=&#x27;image/jpeg&#x27;; &#x27;.jpeg&#x27;=&#x27;image/jpeg&#x27;
+    &#x27;.gif&#x27;=&#x27;image/gif&#x27;; &#x27;.webp&#x27;=&#x27;image/webp&#x27;; &#x27;.woff2&#x27;=&#x27;font/woff2&#x27;
+  }
+  $listener = [System.Net.HttpListener]::new()
+  $listener.Prefixes.Add(&quot;http://localhost:8080/&quot;)
+  $listener.Start()
+  Write-Host &quot;Server jalan di http://localhost:8080/ (tutup jendela untuk berhenti)&quot;
+  while ($listener.IsListening) {
+    $context = $listener.GetContext()
+    $response = $context.Response
+    $path = Join-Path $pwd.Path $context.Request.Url.LocalPath.TrimStart(&#x27;/&#x27;)
+    if (!(Test-Path $path) -or (Test-Path $path -PathType Container)) {
+      $path = Join-Path $path &quot;index.html&quot;
+    }
+    if (Test-Path $path -PathType Leaf) {
+      $type = $types[[System.IO.Path]::GetExtension($path).ToLower()]
+      if ($type) { $response.ContentType = $type }
+      $bytes = [System.IO.File]::ReadAllBytes($path)
+      $response.ContentLength64 = $bytes.Length
+      $response.OutputStream.Write($bytes, 0, $bytes.Length)
+    } else {
+      $response.StatusCode = 404
+    }
+    $response.Close()
+  }
+}
+start-server</code></pre>
+<p>Fungsi ini <strong>harus</strong> mengirim header <code>Content-Type</code>. Tanpa header itu browser menolak module ("Strict MIME type checking") dan slide tidak aktif.</p>
+
+<h2 id="macos-linux">macOS dan Linux</h2>
+<p>Juga untuk Windows yang sudah ada Python. Buka terminal di folder slide:</p>
+<pre><code class="language-sh">python3 -m http.server 8080</code></pre>
+
+<h2 id="masalah">Kalau slide tidak bergerak</h2>
+<ul>
+  <li>Alamat di browser diawali <code>file://</code>: jalankan server seperti di atas.</li>
+  <li>Console menampilkan "Strict MIME type checking": server tidak mengirim <code>Content-Type</code> untuk <code>.js</code>.</li>
+  <li>Halaman tampil sebagai dokumen biasa tanpa error: pastikan root punya atribut <code>data-croot</code> dan berisi <code>.croot-stage</code>.</li>
+</ul>
+    </article>
+    <nav class="pager" aria-label="Halaman">
+      <a class="prev" href="../tema/" rel="prev"><span>Sebelumnya</span>Tema</a>
+    </nav>
+    <p class="edit"><a href="https://github.com/crootss/docs/edit/main/lokal/index.html">Perbaiki halaman ini di GitHub</a></p>
+  </main>
+</div>
+<footer class="foot">
+  <p>crootss: open source, GPL-3.0. <a href="https://crootss.if.co.id/">Landing</a> · <a href="https://github.com/crootss">GitHub</a> · <a href="https://crootss.if.co.id/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

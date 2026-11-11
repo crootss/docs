@@ -1,151 +1,37 @@
-# CrootSS Documentation
+# crootss docs
 
-<div align="center">
-  <img src="crootss.png" alt="CrootSS Logo" width="200"/>
-  
-  [![GitHub stars](https://img.shields.io/github/stars/crootss.svg?style=social&label=Star&maxAge=2592000)](https://github.com/crootss)
-  [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-</div>
+Situs dokumentasi [crootss](https://github.com/crootss/crootss), tayang di https://crootss.if.co.id/docs/ (GitHub Pages dari branch `main`).
 
-## 📖 Daftar Isi
-- [Tentang CrootSS](#tentang-crootss)
-- [Instalasi](#instalasi)
-- [Komponen](#komponen)
-  - [Header](#header)
-  - [Slider](#slider)
-  - [Feed](#feed)
-  - [Event](#event)
-  - [Flipcard](#flipcard)
-  - [Footer](#footer)
+## Struktur
 
-## 🚀 Tentang CrootSS
+| Path | Isi |
+| :-- | :-- |
+| `index.html` | Pengantar dan mulai cepat |
+| `markup/` | Struktur HTML, atribut `data-croot-*`, urutan langkah, node bersarang |
+| `navigasi/` | Keyboard, klik, swipe, overview, URL, kamera 3D, aksesibilitas |
+| `api/` | `croot()`, opsi, method, properti, event |
+| `css/` | Variabel CSS, class status, tips 3D |
+| `tema/` | Tema dari [crootss/themes](https://github.com/crootss/themes): class, token, membuat tema |
+| `lokal/` | Menjalankan slide di Windows, macOS, Linux |
+| `docs.css`, `docs.js` | Gaya dan tombol salin, dipakai semua halaman |
+| `sitemap.xml` | Daftar halaman untuk mesin pencari |
 
-CrootSS adalah library CSS yang dirancang khusus untuk pengembangan aplikasi mobile. Library ini menyediakan berbagai komponen siap pakai yang dapat membantu mempercepat proses pengembangan user interface mobile dengan fokus pada performa dan kemudahan penggunaan.
+Tanpa build: setiap halaman adalah HTML biasa. Menu samping dan tombol sebelumnya/berikutnya ditulis di setiap halaman, jadi saat menambah halaman perbarui menu di **semua** halaman, `sitemap.xml`, dan tabel di atas.
 
-## ⚡ Instalasi
+## Aturan
 
-Tambahkan kode berikut ke dalam file HTML Anda:
+- Ikuti [konvensi CrootJS](https://croot.js.org/docs/conventions): HTML, CSS, dan JS di file terpisah; tanpa `style=""` atau `onclick`. JSON-LD inline diizinkan karena berisi data.
+- Setiap halaman punya satu `h1`, `title` dan `meta description` sendiri, `canonical`, dan JSON-LD `TechArticle`.
+- Isi harus sesuai dengan kode yang dirilis. Saat atribut, API, atau class berubah di `crootss/crootss` atau `crootss/themes`, perbarui halaman yang bersangkutan.
+- Versi CDN di contoh kode (`crootss@vX.Y.Z`, `themes@vX.Y.Z`) diperbarui otomatis oleh `.github/workflows/update-crootss.yml` (harian, atau dispatch dari workflow rilis).
+- Snippet PowerShell di `lokal/` harus identik dengan `crootss/README.md` dan slide "Buka di komputermu" di landing.
 
-```html
-<!-- Font Awesome untuk ikon -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+## Menjalankan lokal
 
-<!-- CSS CrootSS -->
-<link rel="stylesheet" href="croot.css">
+Halaman memakai path relatif, jadi bisa dibuka dari root repo ini:
+
+```sh
+python3 -m http.server 8080
 ```
 
-## 🎯 Komponen
-
-### Header
-
-CrootSS menyediakan dua jenis header yang dapat disesuaikan dengan kebutuhan aplikasi Anda:
-
-#### 1. Header Plain (Sticky)
-
-```html
-<header class="header">
-    <!-- Search Bar -->
-    <div class="search-container">
-        <i class="fas fa-search search-icon"></i>
-        <input type="text" class="search-input" placeholder="Search">
-    </div>
-    
-    <!-- Menu Icons -->
-    <div class="menu-icons">
-        <i class="fas fa-shopping-bag"></i>
-        <i class="fas fa-bell"></i>
-        <i class="fas fa-comment-dots"></i>
-    </div>
-</header>
-```
-
-**✨ Fitur:**
-- Search bar responsif
-- Menu icons dengan hover effect
-- Posisi sticky saat scroll
-- Background putih dengan border bottom
-- Responsif untuk mobile devices
-
-#### 2. Header Transparan (Scroll Effect)
-
-```html
-<header class="header" id="header">
-    <!-- Logo dan Tagline -->
-    <div class="logo">
-        <img src="logo.png" alt="Logo" class="logo-img">
-        <p class="tagline">Tagline Anda</p>
-    </div>
-    
-    <!-- Menu Icons -->
-    <div class="menu-icons">
-        <i class="fas fa-search"></i>
-        <i class="fas fa-bars"></i>
-    </div>
-</header>
-
-<!-- Tambahkan JavaScript -->
-<script src="croot.js"></script>
-```
-
-**✨ Fitur:**
-- Background transparan yang berubah saat scroll
-- Logo dan tagline
-- Menu icons dengan hover effect
-- Efek transisi halus
-- Responsif untuk mobile devices
-
-#### Kustomisasi Header
-
-**Mengubah Warna Background Header Transparan:**
-```css
-.header.scrolled {
-    background: rgba(0, 0, 0, 0.7); /* Sesuaikan opacity */
-}
-```
-
-**Mengubah Warna Icon Hover:**
-```css
-.menu-icons i:hover {
-    color: #YOUR_COLOR; /* Ganti dengan warna yang diinginkan */
-}
-```
-
-**💡 Tips Penggunaan Header:**
-1. Gunakan header plain untuk aplikasi dengan fokus pada fungsionalitas pencarian
-2. Gunakan header transparan untuk landing page yang memerlukan tampilan lebih menarik
-3. Pastikan konten di bawah header memiliki margin-top yang cukup
-4. Sesuaikan ukuran logo dan icon sesuai kebutuhan mobile
-5. Manfaatkan class yang sudah disediakan untuk konsistensi tampilan
-
-### Slider
-🚧 Dokumentasi akan datang
-
-### Feed
-🚧 Dokumentasi akan datang
-
-### Event
-🚧 Dokumentasi akan datang
-
-### Flipcard
-🚧 Dokumentasi akan datang
-
-### Footer
-🚧 Dokumentasi akan datang
-
-## 🤝 Kontribusi
-
-Kami sangat menghargai kontribusi Anda! Berikut langkah-langkah untuk berkontribusi:
-
-## 📝 Lisensi
-
-Didistribusikan di bawah Lisensi MIT. Lihat `LICENSE` untuk informasi lebih lanjut.
-
-## 📮 Kontak
-
-Project Link: [https://github.com/crootss](https://github.com/crootss)
-
----
-
-<div align="center">
-  Made with ❤️ by CrootSS Team
-</div>
+Lalu buka `http://localhost:8080/`.

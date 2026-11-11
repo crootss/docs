@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API JavaScript | crootss</title>
+  <meta name="description" content="Referensi API croot.js: fungsi croot(), opsi, method next, prev, goto, overview, destroy, properti, dan event croot:enter, croot:leave, croot:overview.">
+  <link rel="canonical" href="https://crootss.if.co.id/docs/api/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#fbf9f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#161513" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="crootss">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:url" content="https://crootss.if.co.id/docs/api/">
+  <meta property="og:title" content="API JavaScript | crootss">
+  <meta property="og:description" content="Referensi API croot.js: fungsi croot(), opsi, method next, prev, goto, overview, destroy, properti, dan event croot:enter, croot:leave, croot:overview.">
+  <meta property="og:image" content="https://crootss.if.co.id/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="https://crootss.if.co.id/favicon.ico">
+  <link rel="alternate" type="text/markdown" href="https://crootss.if.co.id/llms.txt" title="crootss untuk LLM">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://crootss.if.co.id/docs/api/#article",
+      "headline": "API JavaScript",
+      "description": "Referensi API croot.js: fungsi croot(), opsi, method next, prev, goto, overview, destroy, properti, dan event croot:enter, croot:leave, croot:overview.",
+      "url": "https://crootss.if.co.id/docs/api/",
+      "inLanguage": "id",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://crootss.if.co.id/#website"
+      },
+      "about": {
+        "@id": "https://crootss.if.co.id/#software"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "crootss",
+        "url": "https://crootss.if.co.id/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "crootss",
+          "item": "https://crootss.if.co.id/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Dokumentasi",
+          "item": "https://crootss.if.co.id/docs/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "API JavaScript",
+          "item": "https://crootss.if.co.id/docs/api/"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../docs.css">
+  <script type="module" src="../docs.js"></script>
+</head>
+<body>
+<a class="skip" href="#isi-halaman">Lompat ke isi</a>
+<header class="top">
+  <a class="brand" href="https://crootss.if.co.id/">crootss</a>
+  <a class="brand-sub" href="../">dokumentasi</a>
+  <nav class="top-links" aria-label="Tautan luar">
+    <a href="https://github.com/crootss/crootss">GitHub</a>
+  </nav>
+</header>
+<div class="layout">
+  <nav class="side" aria-label="Dokumentasi">
+    <ul>
+      <li><a href="../">Pengantar</a></li>
+      <li><a href="../markup/">Markup dan atribut</a></li>
+      <li><a href="../navigasi/">Navigasi</a></li>
+      <li><a href="../api/" aria-current="page">API JavaScript</a></li>
+      <li><a href="../css/">Kustomisasi CSS</a></li>
+      <li><a href="../tema/">Tema</a></li>
+      <li><a href="../lokal/">Menjalankan di komputer</a></li>
+    </ul>
+  </nav>
+  <main id="isi-halaman">
+    <article>
+      <h1>API JavaScript</h1>
+<h2 id="auto">Inisialisasi otomatis</h2>
+<p>Memuat <code>croot.min.js</code> sebagai module sudah cukup: setiap <code>[data-croot]</code> di halaman diinisialisasi saat DOM siap. Instance-nya tersimpan di properti <code>root.croot</code>.</p>
+<pre><code class="language-html">&lt;script type=&quot;module&quot; src=&quot;https://cdn.jsdelivr.net/gh/crootss/crootss@v0.3.0/croot.min.js&quot;&gt;&lt;/script&gt;</code></pre>
+
+<h2 id="manual">Inisialisasi manual</h2>
+<p>Untuk mengatur opsi atau memakai API, beri root <code>data-croot=&quot;manual&quot;</code> lalu impor <code>croot</code> dari file JS-mu sendiri.</p>
+<pre><code class="language-js">import { croot } from &#x27;https://cdn.jsdelivr.net/gh/crootss/crootss@v0.3.0/croot.min.js&#x27;;
+
+const deck = croot(&#x27;#deck&#x27;, { fit: 0.9, pullback: 1, hash: true, keyboard: true, touch: true });
+
+deck.next();
+deck.goto(&#x27;ruang&#x27;);
+deck.root.addEventListener(&#x27;croot:enter&#x27;, (e) =&gt; {
+  console.log(&#x27;masuk&#x27;, e.target.id, &#x27;langkah&#x27;, e.detail.index);
+});</code></pre>
+<p><code>croot()</code> idempoten: memanggilnya lagi pada root yang sudah aktif mengembalikan instance yang sama. Bila root tidak ditemukan atau tidak berisi <code>.croot-stage</code>, ia melempar <code>Error</code>.</p>
+
+<h2 id="croot">croot(root, options)</h2>
+<table>
+  <thead><tr><th>Parameter</th><th>Keterangan</th></tr></thead>
+  <tbody>
+    <tr><td><code>root</code></td><td>Elemen atau selector. Bila kosong, memakai <code>[data-croot]</code> pertama.</td></tr>
+    <tr><td><code>options.fit</code></td><td>Porsi layar yang diisi node aktif. Default <code>0.9</code>. Atribut <code>data-croot-fit</code> menimpa nilai ini.</td></tr>
+    <tr><td><code>options.pullback</code></td><td>Kekuatan kamera mundur di tengah perpindahan. Default <code>1</code>, <code>0</code> = mati. Atribut <code>data-croot-pullback</code> menimpa nilai ini.</td></tr>
+    <tr><td><code>options.hash</code></td><td>Sinkronkan node aktif dengan <code>#/&lt;id&gt;</code> di URL. Default <code>true</code>.</td></tr>
+    <tr><td><code>options.keyboard</code></td><td>Aktifkan navigasi keyboard. Default <code>true</code>.</td></tr>
+    <tr><td><code>options.touch</code></td><td>Aktifkan swipe. Default <code>true</code>.</td></tr>
+  </tbody>
+</table>
+
+<h2 id="instance">Instance</h2>
+<table>
+  <thead><tr><th>Anggota</th><th>Keterangan</th></tr></thead>
+  <tbody>
+    <tr><td><code>next()</code>, <code>prev()</code></td><td>Maju atau mundur satu langkah. Dari overview, keduanya kembali ke node terakhir.</td></tr>
+    <tr><td><code>goto(target)</code></td><td>Terbang ke node. <code>target</code> berupa index langkah (angka), <code>id</code> (string, boleh diawali <code>#</code> atau <code>#/</code>), atau elemen node. Mengembalikan <code>false</code> bila target tidak valid.</td></tr>
+    <tr><td><code>overview(force)</code></td><td>Tanpa argumen: buka/tutup overview. <code>true</code> / <code>false</code>: paksa buka atau tutup.</td></tr>
+    <tr><td><code>destroy()</code></td><td>Lepas semua listener, hapus class dan transform. Halaman kembali ke mode dokumen.</td></tr>
+    <tr><td><code>current</code></td><td>Node aktif (elemen).</td></tr>
+    <tr><td><code>index</code></td><td>Index langkah terakhir. Tidak berubah saat node tanpa step diklik.</td></tr>
+    <tr><td><code>isOverview</code></td><td><code>true</code> saat overview terbuka.</td></tr>
+    <tr><td><code>steps</code></td><td>Array node berurutan sesuai <code>data-croot-step</code>.</td></tr>
+    <tr><td><code>root</code></td><td>Elemen root.</td></tr>
+  </tbody>
+</table>
+
+<h2 id="event">Event</h2>
+<p>Semua event adalah <code>CustomEvent</code> yang menggelembung (bubbles), jadi cukup didengarkan di root.</p>
+<table>
+  <thead><tr><th>Event</th><th>Dikirim di</th><th><code>detail</code></th></tr></thead>
+  <tbody>
+    <tr><td><code>croot:enter</code></td><td>node yang baru aktif</td><td><code>{ previous, index }</code></td></tr>
+    <tr><td><code>croot:leave</code></td><td>node yang ditinggalkan</td><td><code>{ next }</code></td></tr>
+    <tr><td><code>croot:overview</code></td><td>root</td><td><code>{ current }</code></td></tr>
+  </tbody>
+</table>
+
+<h2 id="contoh-hud">Contoh: bilah navigasi</h2>
+<p>HTML, CSS, dan JS di file terpisah. Tombol tanpa <code>onclick</code>; satu listener di bilah menangani semuanya.</p>
+<pre><code class="language-html">&lt;nav class=&quot;hud&quot; aria-label=&quot;Navigasi presentasi&quot;&gt;
+  &lt;button class=&quot;hud-btn&quot; data-act=&quot;prev&quot; aria-label=&quot;Sebelumnya&quot;&gt;←&lt;/button&gt;
+  &lt;span class=&quot;hud-pos&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+  &lt;button class=&quot;hud-btn&quot; data-act=&quot;next&quot; aria-label=&quot;Berikutnya&quot;&gt;→&lt;/button&gt;
+&lt;/nav&gt;</code></pre>
+<pre><code class="language-js">import { croot } from &#x27;https://cdn.jsdelivr.net/gh/crootss/crootss@v0.3.0/croot.min.js&#x27;;
+
+const deck = croot(&#x27;#deck&#x27;);
+const pos = document.querySelector(&#x27;.hud-pos&#x27;);
+
+document.querySelector(&#x27;.hud&#x27;).addEventListener(&#x27;click&#x27;, (e) =&gt; {
+  const act = e.target.closest(&#x27;[data-act]&#x27;)?.dataset.act;
+  if (act === &#x27;prev&#x27;) deck.prev();
+  if (act === &#x27;next&#x27;) deck.next();
+});
+
+function update() {
+  pos.textContent = deck.isOverview ? &#x27;Overview&#x27; : `${deck.index + 1} / ${deck.steps.length}`;
+}
+deck.root.addEventListener(&#x27;croot:enter&#x27;, update);
+deck.root.addEventListener(&#x27;croot:overview&#x27;, update);
+update();</code></pre>
+
+<h2 id="util">Utilitas</h2>
+<p>Modul juga mengekspor <code>parseStep(value)</code> (<code>&quot;2.10&quot;</code> → <code>[2, 10]</code>) dan <code>compareStep(a, b)</code> untuk mengurutkan langkah dengan aturan yang sama seperti crootss.</p>
+    </article>
+    <nav class="pager" aria-label="Halaman">
+      <a class="prev" href="../navigasi/" rel="prev"><span>Sebelumnya</span>Navigasi</a>
+<a class="next" href="../css/" rel="next"><span>Berikutnya</span>Kustomisasi CSS</a>
+    </nav>
+    <p class="edit"><a href="https://github.com/crootss/docs/edit/main/api/index.html">Perbaiki halaman ini di GitHub</a></p>
+  </main>
+</div>
+<footer class="foot">
+  <p>crootss: open source, GPL-3.0. <a href="https://crootss.if.co.id/">Landing</a> · <a href="https://github.com/crootss">GitHub</a> · <a href="https://crootss.if.co.id/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

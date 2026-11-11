@@ -1,0 +1,99 @@
+# Perbarui versi crootss dan crootss/themes yang dipin di contoh kode dokumentasi.
+#
+# Pemicu:
+#   - repository_dispatch "crootss-release": dikirim workflow Release di
+#     crootss/crootss atau crootss/themes tepat setelah rilis (butuh secret
+#     LANDING_DISPATCH_TOKEN di repo pengirim).
+#   - jadwal harian: cadangan bila dispatch tidak terkirim.
+#   - manual: Actions → Update crootss → Run workflow.
+#
+# Kenaikan versi major (mis. v0.x → v1.x) tidak diterapkan otomatis karena
+# bisa mengubah API atau nama class; workflow hanya memberi peringatan.
+name: Update crootss
+
+on:
+  repository_dispatch:
+    types: [crootss-release]
+  schedule:
+    - cron: '0 1 * * *' # 08:00 WIB
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: update-crootss
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Bandingkan versi & ganti pin
+        id: ver
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          changed=""
+          for repo in crootss/crootss crootss/themes; do
+            latest=$(gh release view --repo "$repo" --json tagName -q .tagName)
+            current=$(grep -rhoE --include='*.html' --include='*.js' --include='*.css' --include='*.txt' \
+              "$repo@v[0-9]+\.[0-9]+\.[0-9]+" . --exclude-dir=.git | head -n1 | sed 's/.*@//')
+            echo "$repo: terpasang $current, rilis terbaru $latest"
+
+            if [ -z "$latest" ] || [ -z "$current" ]; then
+              echo "::error::Versi $repo tidak terbaca (terpasang='$current', terbaru='$latest')"
+              exit 1
+            fi
+            newest=$(printf '%s\n%s\n' "$current" "$latest" | sort -V | tail -n1)
+            if [ "$latest" = "$current" ] || [ "$newest" != "$latest" ]; then
+              echo "  sudah terbaru"
+              continue
+            fi
+            if [ "$(echo "$current" | cut -d. -f1)" != "$(echo "$latest" | cut -d. -f1)" ]; then
+              echo "::warning::$repo $latest adalah versi major baru. Perbarui dokumentasi secara manual setelah dicek."
+              continue
+            fi
+
+            # Pastikan file sudah tersedia di CDN sebelum dipakai
+            case "$repo" in
+              crootss/crootss) files="croot.min.js crootss.min.css" ;;
+              crootss/themes)  files="poster.min.css gelap.min.css minimal.min.css base.css" ;;
+            esac
+            for f in $files; do
+              url="https://cdn.jsdelivr.net/gh/$repo@$latest/$f"
+              for i in 1 2 3 4 5 6; do
+                code=$(curl -s -o /dev/null -w '%{http_code}' "$url")
+                [ "$code" = 200 ] && break
+                sleep 20
+              done
+              echo "  $url → $code"
+              [ "$code" = 200 ] || { echo "::error::$url belum tersedia"; exit 1; }
+            done
+
+            targets=$(grep -rlE --include='*.html' --include='*.js' --include='*.css' --include='*.txt' \
+              "$repo@$current" . --exclude-dir=.git)
+            sed -i "s#$repo@$current#$repo@$latest#g" $targets
+            changed="$changed $repo $current → $latest;"
+          done
+          echo "changed=$changed" >> "$GITHUB_OUTPUT"
+
+      - name: Commit & push
+        if: steps.ver.outputs.changed != ''
+        env:
+          CHANGED: ${{ steps.ver.outputs.changed }}
+        run: |
+          git diff --stat
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -am "Perbarui versi:$CHANGED"
+          git push
+
+      - name: Minta build GitHub Pages
+        if: steps.ver.outputs.changed != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds"

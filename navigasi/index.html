@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navigasi | crootss</title>
+  <meta name="description" content="Cara penonton bergerak di presentasi crootss: keyboard, klik, swipe, overview, alamat URL tiap slide, efek kamera 3D, dan aksesibilitas.">
+  <link rel="canonical" href="https://crootss.if.co.id/docs/navigasi/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#fbf9f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#161513" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="crootss">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:url" content="https://crootss.if.co.id/docs/navigasi/">
+  <meta property="og:title" content="Navigasi | crootss">
+  <meta property="og:description" content="Cara penonton bergerak di presentasi crootss: keyboard, klik, swipe, overview, alamat URL tiap slide, efek kamera 3D, dan aksesibilitas.">
+  <meta property="og:image" content="https://crootss.if.co.id/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="https://crootss.if.co.id/favicon.ico">
+  <link rel="alternate" type="text/markdown" href="https://crootss.if.co.id/llms.txt" title="crootss untuk LLM">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://crootss.if.co.id/docs/navigasi/#article",
+      "headline": "Navigasi",
+      "description": "Cara penonton bergerak di presentasi crootss: keyboard, klik, swipe, overview, alamat URL tiap slide, efek kamera 3D, dan aksesibilitas.",
+      "url": "https://crootss.if.co.id/docs/navigasi/",
+      "inLanguage": "id",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://crootss.if.co.id/#website"
+      },
+      "about": {
+        "@id": "https://crootss.if.co.id/#software"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "crootss",
+        "url": "https://crootss.if.co.id/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "crootss",
+          "item": "https://crootss.if.co.id/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Dokumentasi",
+          "item": "https://crootss.if.co.id/docs/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Navigasi",
+          "item": "https://crootss.if.co.id/docs/navigasi/"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../docs.css">
+  <script type="module" src="../docs.js"></script>
+</head>
+<body>
+<a class="skip" href="#isi-halaman">Lompat ke isi</a>
+<header class="top">
+  <a class="brand" href="https://crootss.if.co.id/">crootss</a>
+  <a class="brand-sub" href="../">dokumentasi</a>
+  <nav class="top-links" aria-label="Tautan luar">
+    <a href="https://github.com/crootss/crootss">GitHub</a>
+  </nav>
+</header>
+<div class="layout">
+  <nav class="side" aria-label="Dokumentasi">
+    <ul>
+      <li><a href="../">Pengantar</a></li>
+      <li><a href="../markup/">Markup dan atribut</a></li>
+      <li><a href="../navigasi/" aria-current="page">Navigasi</a></li>
+      <li><a href="../api/">API JavaScript</a></li>
+      <li><a href="../css/">Kustomisasi CSS</a></li>
+      <li><a href="../tema/">Tema</a></li>
+      <li><a href="../lokal/">Menjalankan di komputer</a></li>
+    </ul>
+  </nav>
+  <main id="isi-halaman">
+    <article>
+      <h1>Navigasi</h1>
+<h2 id="keyboard">Keyboard</h2>
+<table>
+  <thead><tr><th>Tombol</th><th>Aksi</th></tr></thead>
+  <tbody>
+    <tr><td><kbd>→</kbd> <kbd>↓</kbd> <kbd>Spasi</kbd> <kbd>PageDown</kbd></td><td>Langkah berikutnya</td></tr>
+    <tr><td><kbd>←</kbd> <kbd>↑</kbd> <kbd>Shift</kbd>+<kbd>Spasi</kbd> <kbd>PageUp</kbd></td><td>Langkah sebelumnya</td></tr>
+    <tr><td><kbd>Home</kbd> / <kbd>End</kbd></td><td>Langkah pertama / terakhir</td></tr>
+    <tr><td><kbd>Esc</kbd></td><td>Masuk atau keluar overview</td></tr>
+  </tbody>
+</table>
+<p>Tombol diabaikan saat fokus ada di <code>input</code>, <code>textarea</code>, <code>select</code>, atau elemen <code>contenteditable</code>, serta bila ditekan bersama <kbd>Ctrl</kbd>, <kbd>Alt</kbd>, atau <kbd>Meta</kbd>.</p>
+
+<h2 id="klik">Klik dan sentuh</h2>
+<ul>
+  <li><strong>Klik node</strong> mana pun untuk terbang ke sana. Urutan linier ikut tersinkron bila node itu punya step.</li>
+  <li><strong>Link, tombol, dan form</strong> di dalam node tidak dibajak; klik pada elemen itu berjalan normal.</li>
+  <li><strong><code>data-croot-target</code></strong> pada tombol atau link membuat kamera terbang ke selector tujuan.</li>
+  <li><strong>Swipe</strong> minimal 50px: ke kiri atau atas untuk maju, ke kanan atau bawah untuk mundur.</li>
+</ul>
+
+<h2 id="overview">Overview</h2>
+<p>Overview memundurkan kamera sampai seluruh node muat di layar (dihitung dari bounding box semua node). Klik node mana pun untuk masuk lagi, atau tekan <kbd>Esc</kbd> / <kbd>→</kbd> untuk kembali ke node terakhir.</p>
+
+<h2 id="url">Alamat URL</h2>
+<p>Setiap node aktif menulis <code>#/&lt;id&gt;</code> ke URL (tanpa menambah riwayat browser), dan overview menulis <code>#/overview</code>. Membuka URL dengan hash itu langsung menuju node yang bersangkutan, jadi slide tertentu bisa dibagikan sebagai link. Matikan dengan opsi <code>hash: false</code>.</p>
+
+<h2 id="kamera">Kamera 3D</h2>
+<p>Saat berpindah ke node yang jauh di layar, kamera mundur sejenak lalu maju lagi, sehingga penonton melihat ruang di antaranya. Besarnya mundur bergantung pada jarak; perpindahan dekat tidak memakai efek ini. Atur dengan <code>data-croot-pullback</code> pada root (<code>0</code> = mati, <code>2</code> = lebih dramatis).</p>
+<p>Supaya efek 3D terasa, sebar slide di ruang: beda x, y, <em>dan</em> z, dengan sedikit rotasi. Slide yang semuanya sebidang akan terasa seperti geser datar.</p>
+
+<h2 id="aksesibilitas">Aksesibilitas</h2>
+<ul>
+  <li>Node aktif mendapat <code>aria-current=&quot;step&quot;</code>.</li>
+  <li>Setiap perpindahan diumumkan ke pembaca layar lewat region <code>aria-live</code>: posisi dan heading pertama node, misalnya "3 / 12: Pasang". Pakai <code>aria-label</code> pada node untuk teks lain.</li>
+  <li><code>prefers-reduced-motion: reduce</code> dihormati: kamera berpindah seketika.</li>
+  <li>Konten tetap berupa teks HTML biasa sehingga bisa dipilih, disalin, diterjemahkan, dan diperbesar.</li>
+</ul>
+    </article>
+    <nav class="pager" aria-label="Halaman">
+      <a class="prev" href="../markup/" rel="prev"><span>Sebelumnya</span>Markup dan atribut</a>
+<a class="next" href="../api/" rel="next"><span>Berikutnya</span>API JavaScript</a>
+    </nav>
+    <p class="edit"><a href="https://github.com/crootss/docs/edit/main/navigasi/index.html">Perbaiki halaman ini di GitHub</a></p>
+  </main>
+</div>
+<footer class="foot">
+  <p>crootss: open source, GPL-3.0. <a href="https://crootss.if.co.id/">Landing</a> · <a href="https://github.com/crootss">GitHub</a> · <a href="https://crootss.if.co.id/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>

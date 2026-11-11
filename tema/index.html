@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tema | crootss</title>
+  <meta name="description" content="Tema siap pakai crootss (poster, gelap, minimal): cara memasang, daftar class slide dan komponen, token warna --th-*, dan cara membuat tema baru.">
+  <link rel="canonical" href="https://crootss.if.co.id/docs/tema/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#fbf9f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#161513" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="crootss">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:url" content="https://crootss.if.co.id/docs/tema/">
+  <meta property="og:title" content="Tema | crootss">
+  <meta property="og:description" content="Tema siap pakai crootss (poster, gelap, minimal): cara memasang, daftar class slide dan komponen, token warna --th-*, dan cara membuat tema baru.">
+  <meta property="og:image" content="https://crootss.if.co.id/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="https://crootss.if.co.id/favicon.ico">
+  <link rel="alternate" type="text/markdown" href="https://crootss.if.co.id/llms.txt" title="crootss untuk LLM">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://crootss.if.co.id/docs/tema/#article",
+      "headline": "Tema",
+      "description": "Tema siap pakai crootss (poster, gelap, minimal): cara memasang, daftar class slide dan komponen, token warna --th-*, dan cara membuat tema baru.",
+      "url": "https://crootss.if.co.id/docs/tema/",
+      "inLanguage": "id",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://crootss.if.co.id/#website"
+      },
+      "about": {
+        "@id": "https://crootss.if.co.id/#software"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "crootss",
+        "url": "https://crootss.if.co.id/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "crootss",
+          "item": "https://crootss.if.co.id/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Dokumentasi",
+          "item": "https://crootss.if.co.id/docs/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Tema",
+          "item": "https://crootss.if.co.id/docs/tema/"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../docs.css">
+  <script type="module" src="../docs.js"></script>
+</head>
+<body>
+<a class="skip" href="#isi-halaman">Lompat ke isi</a>
+<header class="top">
+  <a class="brand" href="https://crootss.if.co.id/">crootss</a>
+  <a class="brand-sub" href="../">dokumentasi</a>
+  <nav class="top-links" aria-label="Tautan luar">
+    <a href="https://github.com/crootss/crootss">GitHub</a>
+  </nav>
+</header>
+<div class="layout">
+  <nav class="side" aria-label="Dokumentasi">
+    <ul>
+      <li><a href="../">Pengantar</a></li>
+      <li><a href="../markup/">Markup dan atribut</a></li>
+      <li><a href="../navigasi/">Navigasi</a></li>
+      <li><a href="../api/">API JavaScript</a></li>
+      <li><a href="../css/">Kustomisasi CSS</a></li>
+      <li><a href="../tema/" aria-current="page">Tema</a></li>
+      <li><a href="../lokal/">Menjalankan di komputer</a></li>
+    </ul>
+  </nav>
+  <main id="isi-halaman">
+    <article>
+      <h1>Tema</h1>
+<p class="lead">Tema dari <a href="https://github.com/crootss/themes">crootss/themes</a> memberi slide 16:9 yang siap pakai. HTML-nya sama untuk semua tema, jadi berganti gaya cukup mengganti satu baris CSS.</p>
+
+<table>
+  <thead><tr><th>Tema</th><th>Gaya</th><th>Cocok untuk</th></tr></thead>
+  <tbody>
+    <tr><td><code>poster</code></td><td>Blok warna penuh, grotesk tebal raksasa, stiker, tekstur kertas</td><td>Peluncuran, kelas, pitch</td></tr>
+    <tr><td><code>gelap</code></td><td>Panggung gelap, sorot lampu, neon lime/magenta, label monospace</td><td>Talk teknis, demo produk</td></tr>
+    <tr><td><code>minimal</code></td><td>Serif editorial, ruang lega, garis rambut, aksen terakota</td><td>Kuliah, riset, laporan</td></tr>
+  </tbody>
+</table>
+<p>Coba ketiganya di <a href="https://crootss.if.co.id/#/tema-slide">landing page</a> lewat tombol ◐.</p>
+
+<h2 id="pakai">Pakai</h2>
+<p>Muat tema <strong>setelah</strong> <code>crootss.min.css</code>. Font Google ikut dimuat otomatis.</p>
+<pre><code class="language-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/crootss/crootss@v0.3.0/crootss.min.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/crootss/themes@v0.2.0/poster.min.css&quot;&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://cdn.jsdelivr.net/gh/crootss/crootss@v0.3.0/croot.min.js&quot;&gt;&lt;/script&gt;</code></pre>
+
+<h2 id="slide">Slide</h2>
+<pre><code class="language-html">&lt;section class=&quot;croot-node slide t-3 split&quot; id=&quot;pasang&quot; data-croot-step=&quot;2&quot;
+         data-croot-x=&quot;2000&quot; data-croot-ry=&quot;-35&quot;&gt;
+  &lt;div&gt;
+    &lt;p class=&quot;eyebrow&quot;&gt;&lt;b&gt;01&lt;/b&gt; Bab&lt;/p&gt;
+    &lt;h2&gt;Judul slide.&lt;/h2&gt;
+    &lt;p class=&quot;sub&quot;&gt;Penjelasan singkat.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;panel&quot;&gt;&lt;pre&gt;&lt;code&gt;…&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+<p>Slide berukuran 1280×720 (16:9) di desktop dan 720×1280 (9:16) di layar ≤640px.</p>
+
+<h2 id="class">Class</h2>
+<table>
+  <thead><tr><th>Class</th><th>Fungsi</th></tr></thead>
+  <tbody>
+    <tr><td><code>slide</code></td><td>Wajib di setiap slide, bersama <code>croot-node</code>. Tambah <code>tall</code> untuk slide lebih tinggi (900px; 1800px di ponsel).</td></tr>
+    <tr><td><code>t-1</code> … <code>t-8</code></td><td>Warna permukaan slide atau kartu. Setiap tema punya 8 warna sendiri.</td></tr>
+    <tr><td><code>cover</code></td><td>Sampul: <code>h1</code> raksasa dengan dekorasi.</td></tr>
+    <tr><td><code>split</code></td><td>Dua kolom: teks dan panel atau kode.</td></tr>
+    <tr><td><code>center</code></td><td>Satu pernyataan besar di tengah.</td></tr>
+    <tr><td><code>cols</code></td><td>Kolom sejajar, 2 sampai 4 <code>div</code>.</td></tr>
+    <tr><td><code>eyebrow</code></td><td>Label bab; nomor di dalam <code>&lt;b&gt;</code>.</td></tr>
+    <tr><td><code>lead</code>, <code>sub</code>, <code>hl</code></td><td>Teks pengantar besar, teks pendukung, sorotan warna aksen.</td></tr>
+    <tr><td><code>big</code>, <code>mega</code></td><td>Angka atau kata raksasa.</td></tr>
+    <tr><td><code>panel</code>, <code>paper</code></td><td>Kotak kode atau kutipan; <code>paper</code> bergaya khas tiap tema.</td></tr>
+    <tr><td><code>btn</code>, <code>btn ghost</code>, <code>tag</code>, <code>sticker</code>, <code>key</code></td><td>Tombol, label, stiker miring, tombol keyboard besar.</td></tr>
+    <tr><td><code>card</code>, <code>window</code></td><td>Node anak 1280×720 yang bisa di-zoom. <code>window</code> punya bilah jendela: <code>&lt;p class=&quot;chrome&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/p&gt;</code>.</td></tr>
+    <tr><td><code>hud</code>, <code>hud-btn</code>, <code>hud-pos</code></td><td>Bilah navigasi melayang (opsional, perlu JS sendiri; lihat <a href="../api/#contoh-hud">contoh</a>).</td></tr>
+  </tbody>
+</table>
+<p>Kalau kamu mengatur sendiri ukuran teks raksasa, kalikan dengan <code>--th-wide</code> supaya tetap muat di tema berfont lebar: <code>font-size: calc(240px * var(--th-wide));</code></p>
+
+<h2 id="token">Token</h2>
+<p>Setiap tema hanya mengisi token <code>--th-*</code> di <code>:root</code> dan menambah dekorasi khasnya; layout bersama ada di <code>base.css</code>.</p>
+<table>
+  <thead><tr><th>Token</th><th>Fungsi</th></tr></thead>
+  <tbody>
+    <tr><td><code>--th-page</code>, <code>--th-page-image</code>, <code>--th-fg</code></td><td>Latar halaman, pola latar, warna teks.</td></tr>
+    <tr><td><code>--th-display</code>, <code>--th-text</code>, <code>--th-mono</code></td><td>Font judul, teks, dan kode.</td></tr>
+    <tr><td><code>--th-display-weight</code>, <code>--th-display-tracking</code>, <code>--th-display-leading</code></td><td>Ketebalan, jarak huruf, dan tinggi baris judul.</td></tr>
+    <tr><td><code>--th-wide</code></td><td>Pengali ukuran teks raksasa untuk font lebar (default <code>1</code>).</td></tr>
+    <tr><td><code>--th-s1</code> … <code>--th-s8</code>, <code>--th-on-1</code> … <code>--th-on-8</code></td><td>8 warna permukaan dan warna teks di atasnya (dipakai <code>t-1</code> … <code>t-8</code>).</td></tr>
+    <tr><td><code>--th-panel</code>, <code>--th-on-panel</code>, <code>--th-panel-accent</code></td><td>Panel kode.</td></tr>
+    <tr><td><code>--th-btn</code>, <code>--th-on-btn</code>, <code>--th-accent</code></td><td>Tombol dan warna aksen.</td></tr>
+    <tr><td><code>--th-radius</code>, <code>--th-shadow</code>, <code>--th-texture</code></td><td>Sudut, bayangan, dan tekstur slide.</td></tr>
+  </tbody>
+</table>
+
+<h2 id="tema-baru">Membuat tema baru</h2>
+<ol>
+  <li>Salin salah satu tema, misalnya <code>minimal.css</code>, dengan nama baru.</li>
+  <li>Isi token <code>--th-*</code>. Untuk font display yang lebar, turunkan <code>--th-wide</code>.</li>
+  <li>Tambahkan dekorasi lewat <code>::before</code> / <code>::after</code> pada <code>.cover</code>, <code>.center</code>, dan seterusnya.</li>
+  <li>Cek di <code>demo/</code> repo themes untuk desktop dan ponsel (±390px). Konten tidak boleh meluber di slide mana pun.</li>
+</ol>
+<p>Nama class adalah API publik: tema boleh berbeda gaya, tetapi HTML yang sama harus tetap rapi di semua tema.</p>
+    </article>
+    <nav class="pager" aria-label="Halaman">
+      <a class="prev" href="../css/" rel="prev"><span>Sebelumnya</span>Kustomisasi CSS</a>
+<a class="next" href="../lokal/" rel="next"><span>Berikutnya</span>Menjalankan di komputer</a>
+    </nav>
+    <p class="edit"><a href="https://github.com/crootss/docs/edit/main/tema/index.html">Perbaiki halaman ini di GitHub</a></p>
+  </main>
+</div>
+<footer class="foot">
+  <p>crootss: open source, GPL-3.0. <a href="https://crootss.if.co.id/">Landing</a> · <a href="https://github.com/crootss">GitHub</a> · <a href="https://crootss.if.co.id/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>
