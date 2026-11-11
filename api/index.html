@@ -178,7 +178,19 @@ function update() {
 }
 deck.root.addEventListener(&#x27;croot:enter&#x27;, update);
 deck.root.addEventListener(&#x27;croot:overview&#x27;, update);
-update();</code></pre>
+update();
+
+// Sembunyikan bilah saat penonton diam (class .hud-idle dari tema)
+const hud = document.querySelector(&#x27;.hud&#x27;);
+let idleTimer = 0;
+function wakeHud() {
+  hud.classList.remove(&#x27;hud-idle&#x27;);
+  clearTimeout(idleTimer);
+  idleTimer = setTimeout(() =&gt; hud.classList.add(&#x27;hud-idle&#x27;), 2500);
+}
+document.addEventListener(&#x27;pointermove&#x27;, wakeHud, { passive: true });
+document.addEventListener(&#x27;pointerdown&#x27;, wakeHud, { passive: true });
+wakeHud();</code></pre>
 
 <h2 id="util">Utilitas</h2>
 <p>Modul juga mengekspor <code>parseStep(value)</code> (<code>&quot;2.10&quot;</code> → <code>[2, 10]</code>) dan <code>compareStep(a, b)</code> untuk mengurutkan langkah dengan aturan yang sama seperti crootss.</p>

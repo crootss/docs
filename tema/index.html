@@ -145,9 +145,22 @@
     <tr><td><code>btn</code>, <code>btn ghost</code>, <code>tag</code>, <code>sticker</code>, <code>key</code></td><td>Tombol, label, stiker miring, tombol keyboard besar.</td></tr>
     <tr><td><code>card</code>, <code>window</code></td><td>Node anak 1280×720 yang bisa di-zoom. <code>window</code> punya bilah jendela: <code>&lt;p class=&quot;chrome&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/p&gt;</code>.</td></tr>
     <tr><td><code>hud</code>, <code>hud-btn</code>, <code>hud-pos</code></td><td>Bilah navigasi melayang (opsional, perlu JS sendiri; lihat <a href="../api/#contoh-hud">contoh</a>).</td></tr>
+    <tr><td><code>hud-idle</code></td><td>Pada <code>hud</code>: sembunyikan bilah saat penonton diam, seperti mode slideshow PowerPoint. Dipasang dan dilepas oleh JS-mu.</td></tr>
   </tbody>
 </table>
 <p>Kalau kamu mengatur sendiri ukuran teks raksasa, kalikan dengan <code>--th-wide</code> supaya tetap muat di tema berfont lebar: <code>font-size: calc(240px * var(--th-wide));</code></p>
+
+<h2 id="gerak">Gerak</h2>
+<p>Supaya slide tidak terasa mati saat ditampilkan, tema menambahkan gerak hanya pada slide aktif:</p>
+<ul>
+  <li><strong>Isi masuk bergiliran</strong> (memudar sambil naik) tepat sebelum kamera tiba. Pada <code>split</code>, teks masuk lebih dulu, lalu panel.</li>
+  <li><strong>Gerak kecil terus-menerus</strong>: <code>sticker</code> bergoyang, <code>key</code> di <code>cols</code> "ditekan" bergantian, dan dekorasi khas tiap tema bergerak pelan (bentuk poster berputar/melayang, lampu REC gelap berkedip, ornamen minimal berputar).</li>
+  <li>Node anak (<code>card</code>, <code>window</code>) tidak dianimasikan karena posisinya diatur kamera.</li>
+  <li>Pengaturan sistem "kurangi gerakan" (<code>prefers-reduced-motion</code>) mematikan semuanya, dan tanpa JavaScript tidak ada animasi.</li>
+</ul>
+<p>Animasi memakai properti <code>translate</code>, <code>rotate</code>, dan <code>scale</code>, bukan <code>transform</code>. Gunakan properti yang sama bila menambah animasi sendiri pada elemen yang sudah dirotasi tema. Keyframes bawaan (<code>th-in</code>, <code>th-float</code>, <code>th-spin</code>, <code>th-wobble</code>, <code>th-blink</code>) boleh dipakai ulang, misalnya untuk SVG animasi buatanmu:</p>
+<pre><code class="language-css">/* Bergerak hanya saat slide-nya tampil */
+.croot-active .logo-saya { animation: th-float 6s ease-in-out infinite; }</code></pre>
 
 <h2 id="token">Token</h2>
 <p>Setiap tema hanya mengisi token <code>--th-*</code> di <code>:root</code> dan menambah dekorasi khasnya; layout bersama ada di <code>base.css</code>.</p>

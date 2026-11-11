@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Menjalankan di komputer | crootss</title>
-  <meta name="description" content="Cara membuka presentasi crootss di komputer sendiri: server lokal untuk Windows (PowerShell), macOS, dan Linux, serta alasan file:// tidak bisa dipakai.">
+  <meta name="description" content="Cara membuka presentasi crootss di komputer sendiri dengan satu perintah: PowerShell (bawaan Windows) atau Python (bawaan macOS dan Linux), serta alasan file:// tidak bisa dipakai.">
   <link rel="canonical" href="https://crootss.if.co.id/docs/lokal/">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#fbf9f5" media="(prefers-color-scheme: light)">
@@ -14,7 +14,7 @@
   <meta property="og:locale" content="id_ID">
   <meta property="og:url" content="https://crootss.if.co.id/docs/lokal/">
   <meta property="og:title" content="Menjalankan di komputer | crootss">
-  <meta property="og:description" content="Cara membuka presentasi crootss di komputer sendiri: server lokal untuk Windows (PowerShell), macOS, dan Linux, serta alasan file:// tidak bisa dipakai.">
+  <meta property="og:description" content="Cara membuka presentasi crootss di komputer sendiri dengan satu perintah: PowerShell (bawaan Windows) atau Python (bawaan macOS dan Linux), serta alasan file:// tidak bisa dipakai.">
   <meta property="og:image" content="https://crootss.if.co.id/og.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="https://crootss.if.co.id/favicon.ico">
@@ -27,7 +27,7 @@
       "@type": "TechArticle",
       "@id": "https://crootss.if.co.id/docs/lokal/#article",
       "headline": "Menjalankan di komputer",
-      "description": "Cara membuka presentasi crootss di komputer sendiri: server lokal untuk Windows (PowerShell), macOS, dan Linux, serta alasan file:// tidak bisa dipakai.",
+      "description": "Cara membuka presentasi crootss di komputer sendiri dengan satu perintah: PowerShell (bawaan Windows) atau Python (bawaan macOS dan Linux), serta alasan file:// tidak bisa dipakai.",
       "url": "https://crootss.if.co.id/docs/lokal/",
       "inLanguage": "id",
       "isPartOf": {
@@ -98,53 +98,24 @@
   <main id="isi-halaman">
     <article>
       <h1>Menjalankan di komputer</h1>
-<p class="lead"><code>croot.js</code> adalah ES module, dan browser <strong>tidak</strong> mau memuat module dari <code>file://</code> (klik dua kali <code>index.html</code>). Jalankan server lokal di folder slide, lalu buka <code>http://localhost:8080/</code>.</p>
+<p class="lead"><code>croot.js</code> adalah ES module, dan browser <strong>tidak</strong> mau memuat module dari <code>file://</code> (klik dua kali <code>index.html</code>). Jalankan server lokal di folder slide dengan salah satu cara di bawah, lalu buka <code>http://localhost:8080/</code>.</p>
 
-<h2 id="windows">Windows</h2>
-<p>PowerShell, tanpa instal apa pun. Buka PowerShell di folder slide, tempel seluruh blok ini, lalu tekan Enter.</p>
-<pre><code class="language-powershell">function start-server {
-  # Content-Type wajib: browser menolak ES module tanpa MIME type JavaScript.
-  $types = @{
-    &#x27;.html&#x27;=&#x27;text/html; charset=utf-8&#x27;; &#x27;.css&#x27;=&#x27;text/css; charset=utf-8&#x27;
-    &#x27;.js&#x27;=&#x27;text/javascript; charset=utf-8&#x27;; &#x27;.mjs&#x27;=&#x27;text/javascript; charset=utf-8&#x27;
-    &#x27;.json&#x27;=&#x27;application/json&#x27;; &#x27;.svg&#x27;=&#x27;image/svg+xml&#x27;; &#x27;.ico&#x27;=&#x27;image/x-icon&#x27;
-    &#x27;.png&#x27;=&#x27;image/png&#x27;; &#x27;.jpg&#x27;=&#x27;image/jpeg&#x27;; &#x27;.jpeg&#x27;=&#x27;image/jpeg&#x27;
-    &#x27;.gif&#x27;=&#x27;image/gif&#x27;; &#x27;.webp&#x27;=&#x27;image/webp&#x27;; &#x27;.woff2&#x27;=&#x27;font/woff2&#x27;
-  }
-  $listener = [System.Net.HttpListener]::new()
-  $listener.Prefixes.Add(&quot;http://localhost:8080/&quot;)
-  $listener.Start()
-  Write-Host &quot;Server jalan di http://localhost:8080/ (tutup jendela untuk berhenti)&quot;
-  while ($listener.IsListening) {
-    $context = $listener.GetContext()
-    $response = $context.Response
-    $path = Join-Path $pwd.Path $context.Request.Url.LocalPath.TrimStart(&#x27;/&#x27;)
-    if (!(Test-Path $path) -or (Test-Path $path -PathType Container)) {
-      $path = Join-Path $path &quot;index.html&quot;
-    }
-    if (Test-Path $path -PathType Leaf) {
-      $type = $types[[System.IO.Path]::GetExtension($path).ToLower()]
-      if ($type) { $response.ContentType = $type }
-      $bytes = [System.IO.File]::ReadAllBytes($path)
-      $response.ContentLength64 = $bytes.Length
-      $response.OutputStream.Write($bytes, 0, $bytes.Length)
-    } else {
-      $response.StatusCode = 404
-    }
-    $response.Close()
-  }
-}
-start-server</code></pre>
-<p>Fungsi ini <strong>harus</strong> mengirim header <code>Content-Type</code>. Tanpa header itu browser menolak module ("Strict MIME type checking") dan slide tidak aktif.</p>
+<h2 id="powershell">PowerShell</h2>
+<p>Bawaan Windows, tanpa instal apa pun. Buka PowerShell di folder slide, lalu jalankan:</p>
+<pre><code class="language-powershell">irm https://crootss.if.co.id/serve.ps1 | iex</code></pre>
+<p>Browser terbuka otomatis. Tutup jendela (atau <kbd>Ctrl</kbd>+<kbd>C</kbd>) untuk berhenti.</p>
+<p>Perintah ini mengunduh lalu menjalankan <a href="https://crootss.if.co.id/serve.ps1">serve.ps1</a>: server kecil (±50 baris, bisa kamu baca dulu) yang menyajikan folder saat ini dengan header <code>Content-Type</code> yang benar. Tanpa header itu browser menolak module ("Strict MIME type checking"). Juga jalan di PowerShell 7 (<code>pwsh</code>) di macOS dan Linux.</p>
 
-<h2 id="macos-linux">macOS dan Linux</h2>
-<p>Juga untuk Windows yang sudah ada Python. Buka terminal di folder slide:</p>
+<h2 id="python">Python</h2>
+<p>Bawaan macOS dan Linux. Buka terminal di folder slide, lalu jalankan:</p>
 <pre><code class="language-sh">python3 -m http.server 8080</code></pre>
+<p>Di Windows yang sudah ada Python, ketik <code>python</code>. Tekan <kbd>Ctrl</kbd>+<kbd>C</kbd> untuk berhenti.</p>
 
 <h2 id="masalah">Kalau slide tidak bergerak</h2>
 <ul>
   <li>Alamat di browser diawali <code>file://</code>: jalankan server seperti di atas.</li>
   <li>Console menampilkan "Strict MIME type checking": server tidak mengirim <code>Content-Type</code> untuk <code>.js</code>.</li>
+  <li>"Port 8080 sedang dipakai": tutup server lain yang masih jalan, lalu ulangi.</li>
   <li>Halaman tampil sebagai dokumen biasa tanpa error: pastikan root punya atribut <code>data-croot</code> dan berisi <code>.croot-stage</code>.</li>
 </ul>
     </article>

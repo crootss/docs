@@ -12,7 +12,7 @@ Situs dokumentasi [crootss](https://github.com/crootss/crootss), tayang di https
 | `api/` | `croot()`, opsi, method, properti, event |
 | `css/` | Variabel CSS, class status, tips 3D |
 | `tema/` | Tema dari [crootss/themes](https://github.com/crootss/themes): class, token, membuat tema |
-| `lokal/` | Menjalankan slide di Windows, macOS, Linux |
+| `lokal/` | Menjalankan slide lewat PowerShell (`serve.ps1`) atau Python |
 | `docs.css`, `docs.js` | Gaya dan tombol salin, dipakai semua halaman |
 | `sitemap.xml` | Daftar halaman untuk mesin pencari |
 
@@ -24,7 +24,7 @@ Tanpa build: setiap halaman adalah HTML biasa. Menu samping dan tombol sebelumny
 - Setiap halaman punya satu `h1`, `title` dan `meta description` sendiri, `canonical`, dan JSON-LD `TechArticle`.
 - Isi harus sesuai dengan kode yang dirilis. Saat atribut, API, atau class berubah di `crootss/crootss` atau `crootss/themes`, perbarui halaman yang bersangkutan.
 - Versi CDN di contoh kode (`crootss@vX.Y.Z`, `themes@vX.Y.Z`) diperbarui otomatis oleh `.github/workflows/update-crootss.yml` (harian, atau dispatch dari workflow rilis).
-- Snippet PowerShell di `lokal/` harus identik dengan `crootss/README.md` dan slide "Buka di komputermu" di landing.
+- Perintah di `lokal/` (PowerShell `serve.ps1` dan Python) harus sama dengan `crootss/README.md` dan slide "Buka di komputermu" di landing.
 
 ## Menjalankan lokal
 
