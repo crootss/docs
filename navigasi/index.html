@@ -87,6 +87,7 @@
   <nav class="side" aria-label="Dokumentasi">
     <ul>
       <li><a href="../">Pengantar</a></li>
+      <li><a href="../big-picture/">Big picture</a></li>
       <li><a href="../markup/">Markup dan atribut</a></li>
       <li><a href="../navigasi/" aria-current="page">Navigasi</a></li>
       <li><a href="../api/">API JavaScript</a></li>
@@ -119,7 +120,7 @@
 </ul>
 
 <h2 id="overview">Overview</h2>
-<p>Overview memundurkan kamera sampai seluruh node muat di layar (dihitung dari bounding box semua node). Klik node mana pun untuk masuk lagi, atau tekan <kbd>Esc</kbd> / <kbd>→</kbd> untuk kembali ke node terakhir.</p>
+<p>Overview memundurkan kamera sampai seluruh node muat di layar (dihitung dari bounding box semua node). Bila root punya <code>data-croot-overview</code>, overview membingkai node big picture itu, sesuai <a href="../big-picture/">konvensi big picture</a>. Klik node mana pun untuk masuk lagi, atau tekan <kbd>Esc</kbd> / <kbd>→</kbd> untuk kembali ke node terakhir.</p>
 
 <h2 id="url">Alamat URL</h2>
 <p>Setiap node aktif menulis <code>#/&lt;id&gt;</code> ke URL (tanpa menambah riwayat browser), dan overview menulis <code>#/overview</code>. Membuka URL dengan hash itu langsung menuju node yang bersangkutan, jadi slide tertentu bisa dibagikan sebagai link. Matikan dengan opsi <code>hash: false</code>.</p>

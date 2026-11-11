@@ -7,6 +7,7 @@ Situs dokumentasi [crootss](https://github.com/crootss/crootss), tayang di https
 | Path | Isi |
 | :-- | :-- |
 | `index.html` | Pengantar dan mulai cepat |
+| `big-picture/` | Konvensi big picture, memilih diagram, kelas diagram dan animasi |
 | `markup/` | Struktur HTML, atribut `data-croot-*`, urutan langkah, node bersarang |
 | `navigasi/` | Keyboard, klik, swipe, overview, URL, kamera 3D, aksesibilitas |
 | `api/` | `croot()`, opsi, method, properti, event |

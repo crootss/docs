@@ -87,6 +87,7 @@
   <nav class="side" aria-label="Dokumentasi">
     <ul>
       <li><a href="../">Pengantar</a></li>
+      <li><a href="../big-picture/">Big picture</a></li>
       <li><a href="../markup/">Markup dan atribut</a></li>
       <li><a href="../navigasi/">Navigasi</a></li>
       <li><a href="../api/" aria-current="page">API JavaScript</a></li>
@@ -106,7 +107,7 @@
 <p>Untuk mengatur opsi atau memakai API, beri root <code>data-croot=&quot;manual&quot;</code> lalu impor <code>croot</code> dari file JS-mu sendiri.</p>
 <pre><code class="language-js">import { croot } from &#x27;https://cdn.jsdelivr.net/gh/crootss/crootss@v0.3.0/croot.min.js&#x27;;
 
-const deck = croot(&#x27;#deck&#x27;, { fit: 0.9, pullback: 1, hash: true, keyboard: true, touch: true });
+const deck = croot(&#x27;#deck&#x27;, { fit: 0.9, pullback: 1, hash: true, keyboard: true, touch: true, overview: &#x27;#peta&#x27; });
 
 deck.next();
 deck.goto(&#x27;ruang&#x27;);
@@ -125,6 +126,7 @@ deck.root.addEventListener(&#x27;croot:enter&#x27;, (e) =&gt; {
     <tr><td><code>options.hash</code></td><td>Sinkronkan node aktif dengan <code>#/&lt;id&gt;</code> di URL. Default <code>true</code>.</td></tr>
     <tr><td><code>options.keyboard</code></td><td>Aktifkan navigasi keyboard. Default <code>true</code>.</td></tr>
     <tr><td><code>options.touch</code></td><td>Aktifkan swipe. Default <code>true</code>.</td></tr>
+    <tr><td><code>options.overview</code></td><td>Selector atau elemen node big picture. Default <code>null</code> (bounding box semua node). Atribut <code>data-croot-overview</code> menimpa nilai ini.</td></tr>
   </tbody>
 </table>
 
@@ -132,7 +134,7 @@ deck.root.addEventListener(&#x27;croot:enter&#x27;, (e) =&gt; {
 <table>
   <thead><tr><th>Anggota</th><th>Keterangan</th></tr></thead>
   <tbody>
-    <tr><td><code>next()</code>, <code>prev()</code></td><td>Maju atau mundur satu langkah. Dari overview, keduanya kembali ke node terakhir.</td></tr>
+    <tr><td><code>next()</code>, <code>prev()</code></td><td>Maju atau mundur satu langkah. Dari overview, keduanya kembali ke node terakhir. Dengan big picture, <code>next()</code> di langkah terakhir membuka overview.</td></tr>
     <tr><td><code>goto(target)</code></td><td>Terbang ke node. <code>target</code> berupa index langkah (angka), <code>id</code> (string, boleh diawali <code>#</code> atau <code>#/</code>), atau elemen node. Mengembalikan <code>false</code> bila target tidak valid.</td></tr>
     <tr><td><code>overview(force)</code></td><td>Tanpa argumen: buka/tutup overview. <code>true</code> / <code>false</code>: paksa buka atau tutup.</td></tr>
     <tr><td><code>destroy()</code></td><td>Lepas semua listener, hapus class dan transform. Halaman kembali ke mode dokumen.</td></tr>
@@ -140,6 +142,7 @@ deck.root.addEventListener(&#x27;croot:enter&#x27;, (e) =&gt; {
     <tr><td><code>index</code></td><td>Index langkah terakhir. Tidak berubah saat node tanpa step diklik.</td></tr>
     <tr><td><code>isOverview</code></td><td><code>true</code> saat overview terbuka.</td></tr>
     <tr><td><code>steps</code></td><td>Array node berurutan sesuai <code>data-croot-step</code>.</td></tr>
+    <tr><td><code>bigPicture</code></td><td>Node big picture, atau <code>null</code>.</td></tr>
     <tr><td><code>root</code></td><td>Elemen root.</td></tr>
   </tbody>
 </table>

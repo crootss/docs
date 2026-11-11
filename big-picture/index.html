@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Big picture dan diagram | crootss</title>
+  <meta name="description" content="Konvensi presentasi crootss: mulai dari big picture lalu zoom ke detail. Atribut data-croot-overview, memilih diagram (concept map, system context, rich picture, Business Model Canvas, alur, timeline), kelas diagram, dan animasi.">
+  <link rel="canonical" href="https://crootss.if.co.id/docs/big-picture/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#fbf9f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#161513" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="crootss">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:url" content="https://crootss.if.co.id/docs/big-picture/">
+  <meta property="og:title" content="Big picture dan diagram | crootss">
+  <meta property="og:description" content="Konvensi presentasi crootss: mulai dari big picture lalu zoom ke detail. Atribut data-croot-overview, memilih diagram (concept map, system context, rich picture, Business Model Canvas, alur, timeline), kelas diagram, dan animasi.">
+  <meta property="og:image" content="https://crootss.if.co.id/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="https://crootss.if.co.id/favicon.ico">
+  <link rel="alternate" type="text/markdown" href="https://crootss.if.co.id/llms.txt" title="crootss untuk LLM">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://crootss.if.co.id/docs/big-picture/#article",
+      "headline": "Big picture dan diagram",
+      "description": "Konvensi presentasi crootss: mulai dari big picture lalu zoom ke detail. Atribut data-croot-overview, memilih diagram (concept map, system context, rich picture, Business Model Canvas, alur, timeline), kelas diagram, dan animasi.",
+      "url": "https://crootss.if.co.id/docs/big-picture/",
+      "inLanguage": "id",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://crootss.if.co.id/#website"
+      },
+      "about": {
+        "@id": "https://crootss.if.co.id/#software"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "crootss",
+        "url": "https://crootss.if.co.id/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "crootss",
+          "item": "https://crootss.if.co.id/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Dokumentasi",
+          "item": "https://crootss.if.co.id/docs/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Big picture dan diagram",
+          "item": "https://crootss.if.co.id/docs/big-picture/"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../docs.css">
+  <script type="module" src="../docs.js"></script>
+</head>
+<body>
+<a class="skip" href="#isi-halaman">Lompat ke isi</a>
+<header class="top">
+  <a class="brand" href="https://crootss.if.co.id/">crootss</a>
+  <a class="brand-sub" href="../">dokumentasi</a>
+  <nav class="top-links" aria-label="Tautan luar">
+    <a href="https://github.com/crootss/crootss">GitHub</a>
+  </nav>
+</header>
+<div class="layout">
+  <nav class="side" aria-label="Dokumentasi">
+    <ul>
+      <li><a href="../">Pengantar</a></li>
+      <li><a href="../big-picture/" aria-current="page">Big picture</a></li>
+      <li><a href="../markup/">Markup dan atribut</a></li>
+      <li><a href="../navigasi/">Navigasi</a></li>
+      <li><a href="../api/">API JavaScript</a></li>
+      <li><a href="../css/">Kustomisasi CSS</a></li>
+      <li><a href="../tema/">Tema</a></li>
+      <li><a href="../lokal/">Menjalankan di komputer</a></li>
+    </ul>
+  </nav>
+  <main id="isi-halaman">
+    <article>
+      <h1>Big picture dan diagram</h1>
+<p class="lead">Presentasi crootss dimulai dari gambaran besar, lalu kamera zoom ke tiap blok untuk detailnya. Penonton selalu tahu posisinya di dalam cerita.</p>
+
+<h2 id="konvensi">Konvensi</h2>
+<ol>
+  <li><strong>Satu big picture.</strong> Buat satu node yang memuat seluruh struktur presentasi sebagai diagram, dan daftarkan dengan <code>data-croot-overview=&quot;#id&quot;</code> pada root.</li>
+  <li><strong>Tampilkan di awal.</strong> Big picture menjadi langkah pertama, atau langkah kedua setelah sampul.</li>
+  <li><strong>Blok, lalu detail.</strong> Setiap cabang diagram adalah blok (node); detailnya adalah node anak di dalam blok atau blok kecil di sebelahnya. Urutan langkah: blok → detailnya → blok berikutnya.</li>
+  <li><strong>Satu bidang.</strong> Blok berada di bidang yang sama dengan big picture supaya overview terbaca sebagai satu gambar. Gunakan z dan rotasi seperlunya, untuk penekanan.</li>
+  <li><strong>Kembali ke big picture.</strong> <kbd>Esc</kbd> selalu membuka big picture, dan <kbd>→</kbd> setelah langkah terakhir kembali ke sana (otomatis bila <code>data-croot-overview</code> diisi).</li>
+</ol>
+<p>Contoh nyata: <a href="https://crootss.if.co.id/">crootss.if.co.id</a> disusun sebagai concept map. Tekan <kbd>Esc</kbd> di sana untuk melihat petanya.</p>
+
+<h2 id="overview">Atribut big picture</h2>
+<pre><code class="language-html">&lt;main class=&quot;croot-viewport&quot; data-croot data-croot-overview=&quot;#peta&quot;&gt;
+  &lt;div class=&quot;croot-stage&quot;&gt;
+    &lt;!-- Big picture: satu node yang memuat seluruh struktur --&gt;
+    &lt;div class=&quot;croot-node peta&quot; id=&quot;peta&quot; data-croot-step=&quot;1&quot;&gt;
+      &lt;h2&gt;Rencana rilis&lt;/h2&gt;
+      &lt;svg class=&quot;dg&quot; viewBox=&quot;-1200 -700 2400 1400&quot; aria-hidden=&quot;true&quot;&gt;
+        &lt;path class=&quot;dg-edge dotted a-flow&quot; d=&quot;M0 0 L-800 -350&quot;/&gt;
+        &lt;path class=&quot;dg-edge dotted a-flow&quot; d=&quot;M0 0 L800 -350&quot;/&gt;
+        &lt;path class=&quot;dg-edge dotted a-flow&quot; d=&quot;M0 0 L0 450&quot;/&gt;
+        &lt;g class=&quot;dg-label&quot; transform=&quot;translate(-400 -175)&quot;&gt;&lt;rect x=&quot;-90&quot; y=&quot;-22&quot; width=&quot;180&quot; height=&quot;44&quot; rx=&quot;22&quot;/&gt;&lt;text&gt;dibangun&lt;/text&gt;&lt;/g&gt;
+      &lt;/svg&gt;
+    &lt;/div&gt;
+    &lt;!-- Blok: tiap cabang, satu bidang dengan peta --&gt;
+    &lt;section class=&quot;croot-node slide&quot; id=&quot;pusat&quot; data-croot-step=&quot;2&quot;&gt;…&lt;/section&gt;
+    &lt;section class=&quot;croot-node slide&quot; id=&quot;produk&quot; data-croot-step=&quot;3&quot;
+             data-croot-x=&quot;-800&quot; data-croot-y=&quot;-350&quot; data-croot-scale=&quot;0.3&quot;&gt;…&lt;/section&gt;
+    &lt;!-- Detail: node anak di dalam blok, zoom satu per satu --&gt;
+  &lt;/div&gt;
+&lt;/main&gt;</code></pre>
+<p>Tanpa <code>data-croot-overview</code>, overview memundurkan kamera sampai semua node muat. Dengan atribut itu, overview membingkai node big picture, sehingga diagram, judul, dan garis penghubungnya tampil utuh. Node big picture biasa dibuat besar (mis. 10000px) dan ditempatkan di belakang blok (<code>--croot-z</code> negatif) supaya bisa diklik untuk kembali ke peta.</p>
+
+<h2 id="memilih">Memilih diagram</h2>
+<table>
+  <thead><tr><th>Diagram</th><th>Cocok untuk</th><th>Cara di crootss</th></tr></thead>
+  <tbody>
+    <tr><td>Concept map</td><td>Menjelaskan produk, materi kuliah, ide</td><td>Blok di sekeliling pusat + SVG <code>.dg-edge</code> dan <code>.dg-label</code> berisi kata kerja penghubung</td></tr>
+    <tr><td>System context</td><td>Arsitektur: sistem dan aktor di sekitarnya</td><td>Sistem di tengah, aktor sebagai blok, panah <code>.dg-edge</code> dengan <code>marker-end</code></td></tr>
+    <tr><td>Rich picture</td><td>Situasi yang kompleks, banyak pihak</td><td>Ilustrasi SVG bebas; <code>.dg-box</code>, <code>.dg-label</code>, dan kelas animasi <code>a-*</code></td></tr>
+    <tr><td>Business Model Canvas</td><td>Pitch, rencana bisnis</td><td>Slide <code>.bmc</code> dengan 9 blok <code>.bmc-*</code> yang masing-masing bisa di-zoom</td></tr>
+    <tr><td>Alur</td><td>Proses, pipeline, langkah kerja</td><td><code>&lt;ol class=&quot;flow&quot;&gt;</code>; langkah masuk bergiliran</td></tr>
+    <tr><td>Timeline</td><td>Sejarah, roadmap</td><td><code>&lt;ol class=&quot;timeline&quot;&gt;</code></td></tr>
+  </tbody>
+</table>
+
+<h2 id="kelas">Kelas diagram</h2>
+<p>Semua kelas berasal dari <a href="../tema/">tema</a>, murni CSS, dan memakai warna tema.</p>
+<table>
+  <thead><tr><th>Kelas</th><th>Fungsi</th></tr></thead>
+  <tbody>
+    <tr><td><code>dg</code></td><td>Pada <code>&lt;svg&gt;</code>: wadah diagram. Teks di dalamnya memakai font tema.</td></tr>
+    <tr><td><code>dg-edge</code></td><td>Garis/panah (<code>&lt;path&gt;</code>). Varian <code>dotted</code> dan <code>dashed</code>; jarak titik lewat <code>--dg-gap</code>.</td></tr>
+    <tr><td><code>dg-box</code></td><td>Kotak atau lingkaran berwarna permukaan dengan garis tepi.</td></tr>
+    <tr><td><code>dg-label</code></td><td>Pada <code>&lt;g&gt;</code> berisi <code>&lt;rect&gt;</code> dan <code>&lt;text&gt;</code>: label pil untuk garis.</td></tr>
+    <tr><td><code>dg-head</code></td><td>Isi <code>&lt;marker&gt;</code> untuk mata panah.</td></tr>
+    <tr><td><code>bmc</code>, <code>bmc-kp</code> … <code>bmc-rv</code></td><td>Business Model Canvas: kp mitra, ka aktivitas, kr sumber daya, vp nilai, cr relasi, ch kanal, cs pelanggan, co biaya, rv pendapatan. Posisi dan ukuran sudah diatur, desktop dan ponsel.</td></tr>
+    <tr><td><code>flow</code>, <code>timeline</code></td><td>Pada <code>&lt;ol&gt;</code>: alur dengan panah, atau garis waktu dengan titik.</td></tr>
+  </tbody>
+</table>
+<pre><code class="language-html">&lt;section class=&quot;croot-node slide t-7 bmc&quot; id=&quot;kanvas&quot; data-croot-step=&quot;4&quot;&gt;
+  &lt;p class=&quot;eyebrow&quot;&gt;&lt;b&gt;03&lt;/b&gt; Model bisnis&lt;/p&gt;
+  &lt;h2&gt;Sembilan blok, klik untuk zoom.&lt;/h2&gt;
+  &lt;div class=&quot;croot-node bmc-vp&quot; data-croot-step=&quot;4.1&quot;&gt;&lt;h3&gt;Nilai&lt;/h3&gt;&lt;p&gt;…&lt;/p&gt;&lt;/div&gt;
+  &lt;div class=&quot;croot-node bmc-cs&quot; data-croot-step=&quot;4.2&quot;&gt;&lt;h3&gt;Pelanggan&lt;/h3&gt;&lt;p&gt;…&lt;/p&gt;&lt;/div&gt;
+  &lt;!-- bmc-kp, bmc-ka, bmc-kr, bmc-cr, bmc-ch, bmc-co, bmc-rv --&gt;
+&lt;/section&gt;</code></pre>
+
+<h2 id="animasi">Animasi</h2>
+<p>Kelas animasi hanya berjalan saat node yang memuatnya aktif (dan <code>a-flow</code> juga saat overview), lalu mati otomatis bila sistem meminta "kurangi gerakan". Isi slide tema juga masuk bergiliran tanpa kelas tambahan.</p>
+<table>
+  <thead><tr><th>Kelas</th><th>Gerak</th></tr></thead>
+  <tbody>
+    <tr><td><code>a-draw</code></td><td>Garis SVG tergambar dari awal ke akhir. Beri <code>pathLength=&quot;1&quot;</code> pada <code>&lt;path&gt;</code>.</td></tr>
+    <tr><td><code>a-flow</code></td><td>Titik-titik <code>.dg-edge.dotted</code> mengalir sepanjang garis.</td></tr>
+    <tr><td><code>a-in</code></td><td>Masuk memudar; urutan lewat <code>--i</code> (0, 1, 2, …) di CSS-mu.</td></tr>
+    <tr><td><code>a-float</code>, <code>a-spin</code>, <code>a-pulse</code>, <code>a-blink</code></td><td>Melayang, berputar, berdenyut, berkedip.</td></tr>
+  </tbody>
+</table>
+<p>Konvensinya tetap ringan: tidak ada JavaScript tambahan, tidak ada library diagram. Diagram adalah HTML dan SVG biasa yang terbaca mesin pencari dan tampil sebagai dokumen saat JavaScript mati.</p>
+    </article>
+    <nav class="pager" aria-label="Halaman">
+      <a class="prev" href="../" rel="prev"><span>Sebelumnya</span>Pengantar</a>
+<a class="next" href="../markup/" rel="next"><span>Berikutnya</span>Markup dan atribut</a>
+    </nav>
+    <p class="edit"><a href="https://github.com/crootss/docs/edit/main/big-picture/index.html">Perbaiki halaman ini di GitHub</a></p>
+  </main>
+</div>
+<footer class="foot">
+  <p>crootss: open source, GPL-3.0. <a href="https://crootss.if.co.id/">Landing</a> · <a href="https://github.com/crootss">GitHub</a> · <a href="https://crootss.if.co.id/llms.txt">llms.txt</a></p>
+</footer>
+</body>
+</html>
