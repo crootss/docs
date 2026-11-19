@@ -127,6 +127,8 @@ deck.root.addEventListener(&#x27;croot:enter&#x27;, (e) =&gt; {
     <tr><td><code>options.keyboard</code></td><td>Aktifkan navigasi keyboard. Default <code>true</code>.</td></tr>
     <tr><td><code>options.touch</code></td><td>Aktifkan swipe. Default <code>true</code>.</td></tr>
     <tr><td><code>options.overview</code></td><td>Selector atau elemen node big picture. Default <code>null</code> (bounding box semua node). Atribut <code>data-croot-overview</code> menimpa nilai ini.</td></tr>
+    <tr><td><code>options.debug</code></td><td>Tandai node yang isinya meluap dan tulis daftarnya di console. Default <code>false</code>; atribut <code>data-croot-debug</code> menyalakannya.</td></tr>
+    <tr><td><code>options.presenter</code></td><td>Tombol <kbd>P</kbd> membuka jendela presenter. Default <code>true</code>.</td></tr>
   </tbody>
 </table>
 
@@ -137,6 +139,9 @@ deck.root.addEventListener(&#x27;croot:enter&#x27;, (e) =&gt; {
     <tr><td><code>next()</code>, <code>prev()</code></td><td>Maju atau mundur satu langkah. Dari overview, keduanya kembali ke node terakhir. Dengan big picture, <code>next()</code> di langkah terakhir membuka overview.</td></tr>
     <tr><td><code>goto(target)</code></td><td>Terbang ke node. <code>target</code> berupa index langkah (angka), <code>id</code> (string, boleh diawali <code>#</code> atau <code>#/</code>), atau elemen node. Mengembalikan <code>false</code> bila target tidak valid.</td></tr>
     <tr><td><code>overview(force)</code></td><td>Tanpa argumen: buka/tutup overview. <code>true</code> / <code>false</code>: paksa buka atau tutup.</td></tr>
+    <tr><td><code>presenter()</code></td><td>Buka (atau fokuskan) jendela presenter. Mengembalikan jendelanya, atau <code>null</code> bila popup diblokir.</td></tr>
+    <tr><td><code>print()</code></td><td>Siapkan halaman cetak (satu langkah per halaman) lalu buka dialog cetak.</td></tr>
+    <tr><td><code>checkOverflow()</code></td><td>Periksa semua node; mengembalikan <code>[{ node, elements }]</code> untuk node yang isinya meluap dan memasang class <code>croot-overflow</code>. Bisa dipanggil tanpa mode debug, misalnya dari tes otomatis.</td></tr>
     <tr><td><code>destroy()</code></td><td>Lepas semua listener, hapus class dan transform. Halaman kembali ke mode dokumen.</td></tr>
     <tr><td><code>current</code></td><td>Node aktif (elemen).</td></tr>
     <tr><td><code>index</code></td><td>Index langkah terakhir. Tidak berubah saat node tanpa step diklik.</td></tr>

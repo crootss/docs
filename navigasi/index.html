@@ -107,6 +107,8 @@
     <tr><td><kbd>←</kbd> <kbd>↑</kbd> <kbd>Shift</kbd>+<kbd>Spasi</kbd> <kbd>PageUp</kbd></td><td>Langkah sebelumnya</td></tr>
     <tr><td><kbd>Home</kbd> / <kbd>End</kbd></td><td>Langkah pertama / terakhir</td></tr>
     <tr><td><kbd>Esc</kbd></td><td>Masuk atau keluar overview</td></tr>
+    <tr><td><kbd>P</kbd></td><td>Buka jendela presenter</td></tr>
+    <tr><td><kbd>Ctrl</kbd>+<kbd>P</kbd></td><td>Cetak atau simpan sebagai PDF, satu langkah per halaman</td></tr>
   </tbody>
 </table>
 <p>Tombol diabaikan saat fokus ada di <code>input</code>, <code>textarea</code>, <code>select</code>, atau elemen <code>contenteditable</code>, serta bila ditekan bersama <kbd>Ctrl</kbd>, <kbd>Alt</kbd>, atau <kbd>Meta</kbd>.</p>
@@ -128,6 +130,23 @@
 <h2 id="kamera">Kamera 3D</h2>
 <p>Saat berpindah ke node yang jauh di layar, kamera mundur sejenak lalu maju lagi, sehingga penonton melihat ruang di antaranya. Besarnya mundur bergantung pada jarak; perpindahan dekat tidak memakai efek ini. Atur dengan <code>data-croot-pullback</code> pada root (<code>0</code> = mati, <code>2</code> = lebih dramatis).</p>
 <p>Supaya efek 3D terasa, sebar slide di ruang: beda x, y, <em>dan</em> z, dengan sedikit rotasi. Slide yang semuanya sebidang akan terasa seperti geser datar.</p>
+
+<h2 id="presenter">Mode presenter</h2>
+<p>Tekan <kbd>P</kbd> untuk membuka jendela kedua bagi penyaji. Isinya catatan pembicara langkah yang sedang tampil, judul langkah berikutnya, pengatur waktu (bisa diulang), jam, dan tombol navigasi. Jendela utama dipakai untuk proyektor: pindahkan ke layar proyektor dan buat layar penuh (<kbd>F11</kbd>). Navigasi dari jendela mana pun tersinkron.</p>
+<p>Catatan pembicara ditulis di dalam node dengan <code>&lt;aside class=&quot;croot-notes&quot;&gt;</code>. Catatan tidak tampil di slide maupun di hasil cetak.</p>
+<pre><code class="language-html">&lt;section class=&quot;croot-node slide&quot; data-croot-step=&quot;3&quot;&gt;
+  &lt;h2&gt;Hasil penelitian&lt;/h2&gt;
+  &lt;aside class=&quot;croot-notes&quot;&gt;&lt;p&gt;Sebut jumlah responden dulu.&lt;/p&gt;&lt;/aside&gt;
+&lt;/section&gt;</code></pre>
+<p>Bila browser memblokir popup, izinkan popup untuk situs deck lalu tekan <kbd>P</kbd> lagi.</p>
+
+<h2 id="cetak">Cetak dan PDF</h2>
+<p>Presentasi sering harus dikirim sebagai PDF, misalnya ke promotor, panitia, atau arsip. Tekan <kbd>Ctrl</kbd>+<kbd>P</kbd> lalu pilih "Simpan sebagai PDF": setiap langkah menjadi satu halaman 1280×720 dengan kamera di langkah itu, sama dengan yang tampil di layar (termasuk halaman big picture). Tambahkan <code>?print</code> di URL untuk langsung membuka dialog cetak.</p>
+<ul>
+  <li>Animasi dimatikan saat dicetak, jadi setiap halaman memperlihatkan keadaan akhirnya.</li>
+  <li>Node yang diputar (<code>rx</code>/<code>ry</code>) dicetak datar; posisi, skala, dan <code>rz</code> tetap.</li>
+  <li>Aktifkan "Grafik latar belakang" bila warna slide tidak ikut tercetak.</li>
+</ul>
 
 <h2 id="aksesibilitas">Aksesibilitas</h2>
 <ul>

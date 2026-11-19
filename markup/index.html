@@ -135,8 +135,12 @@
     <tr><td><code>data-croot-fit</code></td><td>Porsi layar yang diisi node aktif, default <code>0.9</code>.</td></tr>
     <tr><td><code>data-croot-pullback</code></td><td>Kekuatan efek kamera mundur di tengah perpindahan, default <code>1</code>; <code>0</code> mematikannya.</td></tr>
     <tr><td><code>data-croot-overview</code></td><td>Selector node big picture. Overview membingkai node ini, dan <code>→</code> setelah langkah terakhir kembali ke sana (lihat <a href="../big-picture/">Big picture</a>).</td></tr>
+    <tr><td><code>data-croot-debug</code></td><td>Mode debug: node yang isinya melewati batasnya diberi garis putus merah, elemen penyebabnya ditandai, dan daftarnya ditulis di console. Diperiksa ulang setelah font dan gambar dimuat dan setiap ukuran layar berubah. Hapus sebelum tampil.</td></tr>
   </tbody>
 </table>
+
+<h2 id="catatan">Catatan pembicara</h2>
+<p><code>&lt;aside class=&quot;croot-notes&quot;&gt;</code> di dalam node berisi catatan untuk penyaji. Catatan tidak tampil di slide; bacalah di <a href="../navigasi/#presenter">jendela presenter</a> (tombol <kbd>P</kbd>).</p>
 
 <h2 id="urutan">Urutan langkah</h2>
 <p><code>data-croot-step</code> dibandingkan per segmen titik, bukan sebagai angka desimal: <code>2</code> &lt; <code>2.1</code> &lt; <code>2.2</code> &lt; <code>2.10</code> &lt; <code>3</code>. Jadi sub-langkah bisa ditambah tanpa menomori ulang. Urutan di HTML tidak berpengaruh.</p>

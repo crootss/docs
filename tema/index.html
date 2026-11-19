@@ -146,6 +146,7 @@
     <tr><td><code>panel</code>, <code>paper</code></td><td>Kotak kode atau kutipan; <code>paper</code> bergaya khas tiap tema.</td></tr>
     <tr><td><code>btn</code>, <code>btn ghost</code>, <code>tag</code>, <code>sticker</code>, <code>key</code></td><td>Tombol, label, stiker miring, tombol keyboard besar.</td></tr>
     <tr><td><code>card</code>, <code>window</code></td><td>Node anak 1280×720 yang bisa di-zoom. <code>window</code> punya bilah jendela: <code>&lt;p class=&quot;chrome&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/p&gt;</code>.</td></tr>
+    <tr><td><code>portrait</code></td><td>Pada <code>card</code> atau <code>window</code>: di ponsel menjadi potret 720×1280 sehingga memenuhi layar saat di-zoom. Kartu saudara yang tidak aktif otomatis hampir disembunyikan di ponsel.</td></tr>
     <tr><td><code>figure</code></td><td>Pada <code>card</code> atau <code>window</code>: judul <code>h3</code> kecil, lalu <code>&lt;img&gt;</code>, <code>&lt;svg&gt;</code>, atau <code>&lt;video&gt;</code> mengisi sisa kartu; <code>&lt;p&gt;</code> sesudahnya menjadi keterangan.</td></tr>
     <tr><td><code>matrix</code></td><td>Pada <code>&lt;table&gt;</code>: tabel banyak kolom yang tetap berbentuk grid di ponsel. Tanpa kelas ini, tabel ditumpuk per baris di layar ≤640px.</td></tr>
     <tr><td><code>hud</code>, <code>hud-btn</code>, <code>hud-pos</code></td><td>Bilah navigasi melayang (opsional, perlu JS sendiri; lihat <a href="../api/#contoh-hud">contoh</a>).</td></tr>
@@ -168,6 +169,17 @@
 <p>Animasi memakai properti <code>translate</code>, <code>rotate</code>, dan <code>scale</code>, bukan <code>transform</code>. Gunakan properti yang sama bila menambah animasi sendiri pada elemen yang sudah dirotasi tema. Keyframes bawaan (<code>th-in</code>, <code>th-float</code>, <code>th-spin</code>, <code>th-wobble</code>, <code>th-blink</code>) boleh dipakai ulang, misalnya untuk SVG animasi buatanmu:</p>
 <pre><code class="language-css">/* Bergerak hanya saat slide-nya tampil */
 .croot-active .logo-saya { animation: th-float 6s ease-in-out infinite; }</code></pre>
+
+<h2 id="versi">Versi yang cocok</h2>
+<p>Tema diberi versi terpisah dari library. Pasangan berikut sudah dipakai bersama di landing dan dokumentasi; gunakan pasangan terbaru. Daftar kelas baru setiap rilis ada di <a href="https://github.com/crootss/themes/releases">Releases tema</a> dan <a href="https://github.com/crootss/crootss/releases">Releases library</a>.</p>
+<table>
+  <thead><tr><th>crootss</th><th>themes</th><th>Isi utama</th></tr></thead>
+  <tbody>
+    <tr><td>v0.5.0</td><td>v0.6.0</td><td>Presenter, cetak/PDF, debug isi meluap; kartu <code>portrait</code>, kartu saudara diredupkan di ponsel</td></tr>
+    <tr><td>v0.4.0</td><td>v0.5.0, v0.4.0</td><td>Big picture (<code>data-croot-overview</code>); diagram, animasi, <code>matrix</code>, <code>figure</code>, <code>flow vertical</code>, <code>byline</code></td></tr>
+    <tr><td>v0.3.0</td><td>v0.3.0, v0.2.1, v0.2.0</td><td>Kamera mundur (pullback)</td></tr>
+  </tbody>
+</table>
 
 <h2 id="token">Token</h2>
 <p>Setiap tema hanya mengisi token <code>--th-*</code> di <code>:root</code> dan menambah dekorasi khasnya; layout bersama ada di <code>base.css</code>.</p>

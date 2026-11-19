@@ -117,6 +117,9 @@
     <tr><td><code>.croot-overview</code></td><td>root</td><td>Overview terbuka.</td></tr>
     <tr><td><code>.croot-moving</code></td><td>root</td><td>Kamera sedang bergerak.</td></tr>
     <tr><td><code>.croot-active</code>, <code>aria-current=&quot;step&quot;</code></td><td>node</td><td>Node aktif.</td></tr>
+    <tr><td><code>.croot-debug</code></td><td>root</td><td>Mode debug menyala (<code>data-croot-debug</code>).</td></tr>
+    <tr><td><code>.croot-overflow</code>, <code>.croot-overflow-el</code></td><td>node, elemen</td><td>Isi node meluap; elemen penyebabnya. Bergaris merah hanya di mode debug.</td></tr>
+    <tr><td><code>.croot-print</code>, <code>.croot-page</code></td><td>body</td><td>Halaman cetak yang dibuat saat mencetak, lalu dihapus lagi. Ukurannya 1280×720 (<code>@page</code>).</td></tr>
   </tbody>
 </table>
 <p>Tulis gaya mode 3D di bawah <code>.croot-ready</code> supaya mode dokumen (tanpa JS) tetap rapi:</p>

@@ -112,6 +112,14 @@
 <pre><code class="language-sh">python3 -m http.server 8080</code></pre>
 <p>Di Windows yang sudah ada Python, ketik <code>python</code>. Tekan <kbd>Ctrl</kbd>+<kbd>C</kbd> untuk berhenti.</p>
 
+<h2 id="luring">Tanpa internet</h2>
+<p>Library, tema, dan font Google dimuat dari CDN, padahal ruang sidang atau konferensi sering tanpa internet. Saat masih online, buat paket luring dengan <a href="https://github.com/crootss/crootss/blob/main/tools/luring.py"><code>tools/luring.py</code></a>:</p>
+<pre><code class="language-sh">curl -O https://raw.githubusercontent.com/crootss/crootss/main/tools/luring.py
+python3 luring.py folder-slide</code></pre>
+<p>Hasilnya folder <code>folder-slide-luring/</code> berisi salinan deck, semua file CDN dan font di <code>vendor/</code>, <code>serve.ps1</code>, dan petunjuk <code>BACA-LURING.txt</code>. Bawa folder itu, lalu jalankan servernya tanpa internet:</p>
+<pre><code class="language-powershell">powershell -ExecutionPolicy Bypass -File serve.ps1</code></pre>
+<p>atau <code>python3 -m http.server 8080</code>, lalu buka <code>http://localhost:8080/</code>. Alat ini memperingatkan rujukan ke file di luar folder deck karena file itu tidak ikut terbawa. Tema yang dipilih lewat JavaScript (mengganti <code>href</code> secara dinamis) hanya ikut bila tertulis di HTML.</p>
+
 <h2 id="masalah">Kalau slide tidak bergerak</h2>
 <ul>
   <li>Alamat di browser diawali <code>file://</code>: jalankan server seperti di atas.</li>
