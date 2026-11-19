@@ -136,6 +136,7 @@
     <tr><td><code>slide</code></td><td>Wajib di setiap slide, bersama <code>croot-node</code>. Tambah <code>tall</code> untuk slide lebih tinggi (900px; 1800px di ponsel).</td></tr>
     <tr><td><code>t-1</code> … <code>t-8</code></td><td>Warna permukaan slide atau kartu. Setiap tema punya 8 warna sendiri.</td></tr>
     <tr><td><code>cover</code></td><td>Sampul: <code>h1</code> raksasa dengan dekorasi.</td></tr>
+    <tr><td><code>byline</code>, <code>hint</code></td><td>Di sampul: penulis dan afiliasi (<code>&lt;p class=&quot;byline&quot;&gt;&lt;b&gt;Nama&lt;/b&gt;Afiliasi&lt;/p&gt;</code>) serta petunjuk navigasi kecil. Keduanya ikut alur teks sehingga tidak saling tabrak. Sampul dengan byline sebaiknya tanpa tombol supaya muat di 720px.</td></tr>
     <tr><td><code>split</code></td><td>Dua kolom: teks dan panel atau kode.</td></tr>
     <tr><td><code>center</code></td><td>Satu pernyataan besar di tengah.</td></tr>
     <tr><td><code>cols</code></td><td>Kolom sejajar, 2 sampai 4 <code>div</code>.</td></tr>
@@ -145,6 +146,8 @@
     <tr><td><code>panel</code>, <code>paper</code></td><td>Kotak kode atau kutipan; <code>paper</code> bergaya khas tiap tema.</td></tr>
     <tr><td><code>btn</code>, <code>btn ghost</code>, <code>tag</code>, <code>sticker</code>, <code>key</code></td><td>Tombol, label, stiker miring, tombol keyboard besar.</td></tr>
     <tr><td><code>card</code>, <code>window</code></td><td>Node anak 1280×720 yang bisa di-zoom. <code>window</code> punya bilah jendela: <code>&lt;p class=&quot;chrome&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/p&gt;</code>.</td></tr>
+    <tr><td><code>figure</code></td><td>Pada <code>card</code> atau <code>window</code>: judul <code>h3</code> kecil, lalu <code>&lt;img&gt;</code>, <code>&lt;svg&gt;</code>, atau <code>&lt;video&gt;</code> mengisi sisa kartu; <code>&lt;p&gt;</code> sesudahnya menjadi keterangan.</td></tr>
+    <tr><td><code>matrix</code></td><td>Pada <code>&lt;table&gt;</code>: tabel banyak kolom yang tetap berbentuk grid di ponsel. Tanpa kelas ini, tabel ditumpuk per baris di layar ≤640px.</td></tr>
     <tr><td><code>hud</code>, <code>hud-btn</code>, <code>hud-pos</code></td><td>Bilah navigasi melayang (opsional, perlu JS sendiri; lihat <a href="../api/#contoh-hud">contoh</a>).</td></tr>
     <tr><td><code>hud-idle</code></td><td>Pada <code>hud</code>: sembunyikan bilah saat penonton diam, seperti mode slideshow PowerPoint. Dipasang dan dilepas oleh JS-mu.</td></tr>
   </tbody>
