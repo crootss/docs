@@ -216,6 +216,8 @@ python3 peta.py peta.json</code></pre>
   <li>Ukuran node big picture dihitung otomatis. Blok berkelas <code>tall</code> dikenali sendiri; ukuran lain ditulis di <code>&quot;ukuran&quot;</code>.</li>
   <li>Alat melaporkan blok yang bertumpukan (<code>TUMPANG</code>) dan label yang lebih panjang dari celahnya (<code>SEMPIT</code>). Perbesar <code>&quot;jari&quot;</code> atau <code>&quot;jari_detail&quot;</code> di bagian <code>&quot;desktop&quot;</code>/<code>&quot;ponsel&quot;</code> bila muncul.</li>
   <li>Hasilnya HTML dan CSS biasa yang di-commit, bukan langkah build. Jalankan ulang setiap kali <code>peta.json</code> berubah.</li>
+  <li>Untuk CI: <code>python3 peta.py --cek peta.json</code> gagal (exit 1) bila HTML/CSS belum sesuai <code>peta.json</code>, tanpa menulis apa pun. Tanpa menyalin berkasnya: <code>curl -s …/tools/peta.py | python3 - peta.json</code>. Dari Python: <code>import peta; peta.buat(&apos;peta.json&apos;)</code>.</li>
+  <li>Label selalu mendatar, jadi di garis tegak yang dibutuhkan hanya tinggi label, bukan lebarnya.</li>
 </ul>
 <p>Contoh lengkap: <a href="https://github.com/crootss/crootss/tree/main/tools/contoh"><code>tools/contoh/</code></a>. Landing crootss juga dibuat dengan alat ini.</p>
 

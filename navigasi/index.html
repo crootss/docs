@@ -142,6 +142,9 @@
 
 <h2 id="cetak">Cetak dan PDF</h2>
 <p>Presentasi sering harus dikirim sebagai PDF, misalnya ke promotor, panitia, atau arsip. Tekan <kbd>Ctrl</kbd>+<kbd>P</kbd> lalu pilih "Simpan sebagai PDF": setiap langkah menjadi satu halaman 1280×720 dengan kamera di langkah itu, sama dengan yang tampil di layar (termasuk halaman big picture). Tambahkan <code>?print</code> di URL untuk langsung membuka dialog cetak.</p>
+<p>Untuk membangun PDF otomatis tanpa dialog (CI, atau banyak deck sekaligus), pakai <a href="https://github.com/crootss/crootss/blob/main/tools/pdf.py"><code>tools/pdf.py</code></a>. Alat ini memakai Chrome, Edge, atau Chromium yang sudah terpasang (atau variabel <code>CHROME</code>):</p>
+<pre><code class="language-sh">curl -s https://raw.githubusercontent.com/crootss/crootss/main/tools/pdf.py | python3 - folder-slide hasil.pdf</code></pre>
+<p>Di baliknya, <code>?print=pdf</code> menyiapkan halaman cetak tanpa membuka dialog, lalu menandai <code>&lt;html data-croot-print=&quot;siap&quot;&gt;</code>. Tanda itu juga bisa dipakai alat otomasi lain (Playwright, Puppeteer) sebelum mencetak.</p>
 <ul>
   <li>Animasi dimatikan saat dicetak, jadi setiap halaman memperlihatkan keadaan akhirnya.</li>
   <li>Node yang diputar (<code>rx</code>/<code>ry</code>) dicetak datar; posisi, skala, dan <code>rz</code> tetap.</li>
