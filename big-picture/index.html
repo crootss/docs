@@ -190,6 +190,35 @@
 &lt;/svg&gt;</code></pre>
 <p>Versi lengkap kedua diagram ada di <a href="https://github.com/crootss/themes/tree/main/demo">demo tema</a> (slide System context dan Rich picture).</p>
 
+<h2 id="alat-peta">Alat peta</h2>
+<p>Concept map yang berbentuk pusat, cabang, dan detail bisa dibuat dengan <a href="https://github.com/crootss/crootss/blob/main/tools/peta.py"><code>tools/peta.py</code></a>. Strukturnya ditulis sekali di <code>peta.json</code>, lalu alat itu menulis garis dan label ke HTML serta posisi blok untuk desktop dan ponsel ke CSS. Koordinat tidak perlu ditulis dua kali.</p>
+<pre><code class="language-json">{
+  &quot;html&quot;: &quot;index.html&quot;,
+  &quot;css&quot;: &quot;slide.css&quot;,
+  &quot;peta&quot;: &quot;peta&quot;,
+  &quot;pusat&quot;: &quot;judul&quot;,
+  &quot;cabang&quot;: [
+    {&quot;id&quot;: &quot;latar&quot;, &quot;label&quot;: &quot;berangkat dari&quot;,
+     &quot;detail&quot;: [{&quot;id&quot;: &quot;masalah&quot;, &quot;label&quot;: &quot;dirumuskan jadi&quot;}]},
+    {&quot;id&quot;: &quot;metode&quot;, &quot;label&quot;: &quot;dijawab dengan&quot;},
+    {&quot;id&quot;: &quot;hasil&quot;, &quot;label&quot;: &quot;menghasilkan&quot;}
+  ]
+}</code></pre>
+<p>Pasang penanda di dalam node big picture, lalu jalankan alatnya dengan Python 3:</p>
+<pre><code class="language-html">&lt;div class=&quot;croot-node&quot; id=&quot;peta&quot; data-croot-step=&quot;2&quot;&gt;
+  &lt;!-- peta:garis --&gt;
+  &lt;!-- /peta:garis --&gt;
+&lt;/div&gt;</code></pre>
+<pre><code class="language-sh">curl -O https://raw.githubusercontent.com/crootss/crootss/main/tools/peta.py
+python3 peta.py peta.json</code></pre>
+<ul>
+  <li>Cabang tersebar searah jarum jam mulai dari atas; detail berada di luar cabangnya. Di desktop peta melingkar, di ponsel berbentuk elips tegak.</li>
+  <li>Ukuran node big picture dihitung otomatis. Blok berkelas <code>tall</code> dikenali sendiri; ukuran lain ditulis di <code>&quot;ukuran&quot;</code>.</li>
+  <li>Alat melaporkan blok yang bertumpukan (<code>TUMPANG</code>) dan label yang lebih panjang dari celahnya (<code>SEMPIT</code>). Perbesar <code>&quot;jari&quot;</code> atau <code>&quot;jari_detail&quot;</code> di bagian <code>&quot;desktop&quot;</code>/<code>&quot;ponsel&quot;</code> bila muncul.</li>
+  <li>Hasilnya HTML dan CSS biasa yang di-commit, bukan langkah build. Jalankan ulang setiap kali <code>peta.json</code> berubah.</li>
+</ul>
+<p>Contoh lengkap: <a href="https://github.com/crootss/crootss/tree/main/tools/contoh"><code>tools/contoh/</code></a>. Landing crootss juga dibuat dengan alat ini.</p>
+
 <h2 id="kelas">Kelas diagram</h2>
 <p>Semua kelas berasal dari <a href="../tema/">tema</a>, murni CSS, dan memakai warna tema.</p>
 <table>
